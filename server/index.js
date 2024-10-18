@@ -20,7 +20,10 @@ app.use(
     frameguard: true
   })
 );
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000', //allow requestfrom frontend
+  credentials: true //if you are sending cookies or session info
+}));
 
 setupDB();
 require('./config/passport')(app);

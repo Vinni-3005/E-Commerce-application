@@ -1,0 +1,16 @@
+// Here you can add other styles
+
+
+//adding styles for banners
+.banner-container {
+    display: flex;
+    overflow-x: scroll; /*horizontal scrolling*/
+    gap: 10px;
+}
+
+.banner-container img {
+    width:50%;
+    max-width:200px;
+    height:auto;
+}
+

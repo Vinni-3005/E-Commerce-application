@@ -43,7 +43,7 @@ router.post('/add', auth, role.check(ROLES.Admin), async (req, res) => {
 });
 
 // fetch store brands api
-router.get('/list', async (req, res) => {
+router.get(`/brand/list`, async (req, res) => {
   try {
     const brands = await Brand.find({
       isActive: true
@@ -87,7 +87,7 @@ router.get(
   }
 );
 
-router.get('/:id', async (req, res) => {
+router.get('/brand/:brandId', async (req, res) => {
   try {
     const brandId = req.params.id;
 

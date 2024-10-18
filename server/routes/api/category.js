@@ -9,7 +9,9 @@ const role = require('../../middleware/role');
 const store = require('../../utils/store');
 const { ROLES } = require('../../constants');
 
-router.post('/add', auth, role.check(ROLES.Admin), (req, res) => {
+const { API_URL } = require('../../../client/src/constants');
+
+router.post('category/list', auth, role.check(ROLES.Admin), (req, res) => {
   const name = req.body.name;
   const description = req.body.description;
   const products = req.body.products;
@@ -44,7 +46,7 @@ router.post('/add', auth, role.check(ROLES.Admin), (req, res) => {
 });
 
 // fetch store categories api
-router.get('/list', async (req, res) => {
+router.get(`/category/list`, async (req, res) => {
   try {
     const categories = await Category.find({ isActive: true });
     res.status(200).json({
