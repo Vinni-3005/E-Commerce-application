@@ -21,7 +21,8 @@ import handleError from '../../utils/error';
 import { clearCart } from '../Cart/actions';
 import { clearAccount } from '../Account/actions';
 import { allFieldsValidation } from '../../utils/validation';
-import { API_URL } from '../../constants';
+const {API_URL} = require('../../constants');
+//import { API_URL } from '../../constants';
 
 export const loginChange = (name, value) => {
   let formData = {};

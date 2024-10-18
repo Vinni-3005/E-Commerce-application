@@ -21,7 +21,8 @@ import {
 import { clearCart, getCartId } from '../Cart/actions';
 import { toggleCart } from '../Navigation/actions';
 import handleError from '../../utils/error';
-import { API_URL } from '../../constants';
+const {API_URL} = require('../../constants');
+//import { API_URL } from '../../constants';
 
 export const updateOrderStatus = value => {
   return {

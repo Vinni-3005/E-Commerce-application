@@ -14,7 +14,8 @@ import {
   SUGGESTIONS_FETCH_REQUEST,
   SUGGESTIONS_CLEAR_REQUEST
 } from './constants';
-import { API_URL } from '../../constants';
+const {API_URL} = require('../../constants');
+//import { API_URL } from '../../constants';
 
 export const toggleMenu = () => {
   return {

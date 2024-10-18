@@ -17,7 +17,8 @@ import {
 import { signOut } from '../Login/actions';
 import handleError from '../../utils/error';
 import { allFieldsValidation } from '../../utils/validation';
-import { API_URL } from '../../constants';
+const {API_URL} = require('../../constants');
+//import { API_URL } from '../../constants';
 
 export const resetPasswordChange = (name, value) => {
   let formData = {};

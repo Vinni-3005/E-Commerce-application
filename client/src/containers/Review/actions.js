@@ -21,7 +21,9 @@ import {
 } from './constants';
 import handleError from '../../utils/error';
 import { allFieldsValidation, santizeFields } from '../../utils/validation';
-import { API_URL } from '../../constants';
+const {API_URL} = require('../../constants');
+//import { API_URL } from '../../constants';
+const apiBase = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
 export const reviewChange = (name, value) => {
   let formData = {};

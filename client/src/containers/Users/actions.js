@@ -14,7 +14,8 @@ import {
 } from './constants';
 
 import handleError from '../../utils/error';
-import { API_URL } from '../../constants';
+const {API_URL} = require('../../constants');
+//import { API_URL } from '../../constants';
 
 export const setUserLoading = value => {
   return {

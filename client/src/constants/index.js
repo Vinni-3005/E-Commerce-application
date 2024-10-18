@@ -1,8 +1,58 @@
-export const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
+const CART_ID = 'cart_id';
+const CART_ITEMS = ['cart_items'];
+const CART_ITEM_STATUS = {
+  Processing: 'Processing',
+  Shipped: 'Shipped',
+  Delivered: 'Delivered',
+  Cancelled: 'Cancelled',
+  Not_processed: 'Not processed'
+};
+const CART_TOTAL = 'cart_total';
+const EMAIL_PROVIDER = {
+  Email: 'Email', 
+  Google: 'Google', 
+  Facebook: 'Facebook'
+};
+const MERCHANT_STATUS = {
+  Rejected: 'Rejected',
+  Approved: 'Approved',
+  Waiting_Approval: 'Waiting Approval'
+};
+const REVIEW_STATUS = {
+  Rejected: 'Rejected',
+  Approved: 'Approved',
+  Waiting_Approval: 'Waiting Approval'
+};
+const ROLES = {
+  Admin: 'ROLE ADMIN',
+  Member: 'ROLE MEMBER',
+  Merchant: 'ROLE MERCHANT'
+};
+const SOCKET_URL = window.location.host.indexOf('localhost') >= 0
+    ? 'http://localhost:3000/api'
+    : window.location.host;
+
+
+module.exports = {
+  API_URL,
+  CART_ID,
+  CART_ITEMS,
+  CART_ITEM_STATUS,
+  CART_TOTAL,
+  EMAIL_PROVIDER,
+  MERCHANT_STATUS,
+  REVIEW_STATUS,
+  ROLES,
+  SOCKET_URL
+
+};
+
+//export const API_URL = process.env.REACT_APP_API_URL;
 
 
 
-export const SOCKET_URL =
+/*export const SOCKET_URL =
   window.location.host.indexOf('localhost') >= 0
     ? 'http://localhost:3000/api'
     : window.location.host;
@@ -41,4 +91,4 @@ export const EMAIL_PROVIDER = {
   Email: 'Email',
   Google: 'Google',
   Facebook: 'Facebook'
-};
+};*/

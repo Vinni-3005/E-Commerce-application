@@ -26,7 +26,8 @@ import {
 import handleError from '../../utils/error';
 import { allFieldsValidation } from '../../utils/validation';
 import { signOut } from '../Login/actions';
-import { API_URL } from '../../constants';
+const {API_URL} = require('../../constants');
+//import { API_URL } from '../../constants';
 
 export const merchantChange = (name, value) => {
   let formData = {};

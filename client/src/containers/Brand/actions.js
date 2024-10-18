@@ -26,7 +26,9 @@ import {
 import handleError from '../../utils/error';
 import { formatSelectOptions } from '../../utils/select';
 import { allFieldsValidation } from '../../utils/validation';
-import { API_URL } from '../../constants';
+const {API_URL} = require('../../constants')
+//import { API_URL } from '../../constants';
+const apiBase = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
 export const brandChange = (name, value) => {
   let formData = {};
