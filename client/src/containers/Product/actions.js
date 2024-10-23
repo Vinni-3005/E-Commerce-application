@@ -27,12 +27,15 @@ import {
   RESET_ADVANCED_FILTERS
 } from './constants';
 
-const {API_URL} = require('../../constants');
+//const {API_URL} = require('../../constants');
 //import { API_URL, ROLES } from '../../constants';
+
+import {API_URL } from '../../constants/constant'
 import handleError from '../../utils/error';
 import { formatSelectOptions, unformatSelectOptions } from '../../utils/select';
 import { allFieldsValidation } from '../../utils/validation';
-const apiBase = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+const apiBase = process.env.REACT_APP_API_URL;
+console.log("API BASE",apiBase)
 
 export const productChange = (name, value) => {
   let formData = {};

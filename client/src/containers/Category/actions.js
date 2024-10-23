@@ -25,9 +25,10 @@ import {
 import handleError from '../../utils/error';
 import { formatSelectOptions, unformatSelectOptions } from '../../utils/select';
 import { allFieldsValidation } from '../../utils/validation';
-const {API_URL} = require('../../constants');
+//const {API_URL} = require('../../constants');
+import {API_URL } from '../../constants/constant';
 //import { API_URL } from '../../constants';
-const apiBase = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+//const apiBase = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
 export const categoryChange = (name, value) => {
   let formData = {};

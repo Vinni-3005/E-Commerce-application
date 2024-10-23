@@ -29,9 +29,11 @@ const ROLES = {
   Member: 'ROLE MEMBER',
   Merchant: 'ROLE MERCHANT'
 };
-const SOCKET_URL = window.location.host.indexOf('localhost') >= 0
-    ? 'http://localhost:3000/api'
-    : window.location.host;
+/*const SOCKET_URL = window.location.host.indexOf('localhost') >= 0
+    ? 'http://localhost:3001/api'
+    : window.location.host;*/
+
+const SOCKET_URL = 'http://localhost:3000/api';
 
 
 module.exports = {
