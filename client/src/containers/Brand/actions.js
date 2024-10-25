@@ -55,7 +55,7 @@ export const brandEditChange = (name, value) => {
 export const fetchStoreBrands = () => {
   return async (dispatch, getState) => {
     try {
-        const response = await axios.get(`${API_URL}/brand/list`);
+        const response = await axios.get(`${API_URL}/brand`);
 
       dispatch({
         type: FETCH_STORE_BRANDS,

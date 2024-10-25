@@ -46,7 +46,7 @@ router.post('category/list', auth, role.check(ROLES.Admin), (req, res) => {
 });
 
 // fetch store categories api
-router.get(`/category/list`, async (req, res) => {
+router.get(`/category`, async (req, res) => {
   try {
     const categories = await Category.find({ isActive: true });
     res.status(200).json({

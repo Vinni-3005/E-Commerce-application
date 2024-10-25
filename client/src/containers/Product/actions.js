@@ -132,7 +132,7 @@ export const fetchStoreProduct = slug => {
     dispatch(setProductLoading(true));
 
     try {
-      const response = await axios.get(`${API_URL}/product/item/${slug}`);
+      const response = await axios.get(`${API_URL}/product/item`);
 
       const inventory = response.data.product.quantity;
       const product = { ...response.data.product, inventory };
@@ -152,7 +152,7 @@ export const fetchStoreProduct = slug => {
 export const fetchProductsSelect = () => {
   return async (dispatch, getState) => {
     try {
-      const response = await axios.get(`${API_URL}/product/list/select`);
+      const response = await axios.get(`${API_URL}/product/select`);
 
       const formattedProducts = formatSelectOptions(response.data.products);
 

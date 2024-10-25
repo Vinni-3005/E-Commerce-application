@@ -116,7 +116,7 @@ export const deleteReview = id => {
 export const fetchProductReviews = slug => {
   return async (dispatch, getState) => {
     try {
-      const response = await axios.get(`${API_URL}/review/${slug}`);
+      const response = await axios.get(`${API_URL}/review`);
 
       const { ratingSummary, totalRatings, totalReviews, totalSummary } =
         getProductReviewsSummary(response.data.reviews);

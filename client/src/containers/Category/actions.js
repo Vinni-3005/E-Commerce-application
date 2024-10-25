@@ -67,7 +67,7 @@ export const resetCategory = () => {
 export const fetchStoreCategories = () => {
   return async (dispatch, getState) => {
     try {
-      const response = await axios.get(`${API_URL}/category/list`);
+      const response = await axios.get(`${API_URL}/category`);
 
       dispatch({
         type: FETCH_STORE_CATEGORIES,

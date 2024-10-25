@@ -9,6 +9,7 @@ const auth = require('../../middleware/auth');
 const role = require('../../middleware/role');
 const store = require('../../utils/store');
 const { ROLES, MERCHANT_STATUS } = require('../../constants');
+const {API_URL} = require('../../constants');
 
 router.post('/add', auth, role.check(ROLES.Admin), async (req, res) => {
   try {
@@ -43,7 +44,7 @@ router.post('/add', auth, role.check(ROLES.Admin), async (req, res) => {
 });
 
 // fetch store brands api
-router.get(`/brand/list`, async (req, res) => {
+router.get(`${API_URL}/brand`, async (req, res) => {
   try {
     const brands = await Brand.find({
       isActive: true

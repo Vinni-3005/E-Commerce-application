@@ -21,7 +21,8 @@ app.use(
   })
 );
 app.use(cors({
-  origin: 'http://localhost:3000', //allow requestfrom frontend
+  origin: "http://localhost:3001/api", //allow requestfrom frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true //if you are sending cookies or session info
 }));
 
