@@ -27,8 +27,9 @@ import handleError from '../../utils/error';
 import { formatSelectOptions } from '../../utils/select';
 import { allFieldsValidation } from '../../utils/validation';
 //const {API_URL} = require('../../constants')
-//import { API_URL } from '../../constants';
+//import { API_URL } from '../../constant
 import {API_URL } from '../../constants/constant';
+
 console.log("API BASE", API_URL);
 
 export const brandChange = (name, value) => {
@@ -55,7 +56,7 @@ export const brandEditChange = (name, value) => {
 export const fetchStoreBrands = () => {
   return async (dispatch, getState) => {
     try {
-        const response = await axios.get(`${API_URL}/brand`);
+        const response = await axios.get(`${API_URL}/brand/list`);
 
       dispatch({
         type: FETCH_STORE_BRANDS,

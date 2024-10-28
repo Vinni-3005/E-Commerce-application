@@ -19,13 +19,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../src/styles/style.scss'; //application styles
 import Carousel from 'react-bootstrap/Carousel';
 
-/*import banner2 from '../src/images/banners/banner-2.jpg';
-import banner3 from '../src/images/banners/banner-3.jpg';
-import banner4 from '../src/images/banners/banner-4.jpg';
-import banner5 from '../src/images/banners/banner-5.jpg';
-import banner6 from '../src/images/banners/banner-6.jpg'; */
-
-
 
 // Import application sass styles
 import './styles/style.scss';

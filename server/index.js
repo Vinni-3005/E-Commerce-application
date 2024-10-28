@@ -21,9 +21,9 @@ app.use(
   })
 );
 app.use(cors({
-  origin: "http://localhost:3001/api", //allow requestfrom frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true //if you are sending cookies or session info
+  origin: "http://localhost:3001", //allow request from frontend
+  //methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  //credentials: true //if you are sending cookies or session info
 }));
 
 setupDB();

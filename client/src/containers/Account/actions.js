@@ -14,9 +14,9 @@ import {
   SET_PROFILE_LOADING
 } from './constants';
 import handleError from '../../utils/error';
-const {API_URL} = require('../../constants');
+//const {API_URL} = require('../../constants');
 //import { API_URL } from '../../constants';
-
+import {API_URL } from '../../constants/constant';
 export const accountChange = (name, value) => {
   let formData = {};
   formData[name] = value;
