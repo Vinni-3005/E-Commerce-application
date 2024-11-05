@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const passport = require('passport');
+//writing additional line and initializing passport
+//require('../config/passport')(passport);
 
 const auth = require('../../middleware/auth');
 
@@ -21,7 +23,7 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     if (!email) {
-      return res
+      return res              //validating email and password
         .status(400)
         .json({ error: 'You must enter an email address.' });
     }
@@ -29,20 +31,21 @@ router.post('/login', async (req, res) => {
     if (!password) {
       return res.status(400).json({ error: 'You must enter a password.' });
     }
-
+    //finding the useer by email
     const user = await User.findOne({ email });
     if (!user) {
       return res
         .status(400)
         .send({ error: 'No user found for this email address.' });
     }
-
+    //check provider
     if (user && user.provider !== EMAIL_PROVIDER.Email) {
       return res.status(400).send({
         error: `That email address is already in use using ${user.provider} provider.`
       });
     }
 
+    //compare password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
@@ -51,15 +54,16 @@ router.post('/login', async (req, res) => {
         error: 'Password Incorrect'
       });
     }
-
+    
+    //generate jwt token
     const payload = {
       id: user.id
     };
-
-    const token = jwt.sign(payload, secret, { expiresIn: tokenLife });
+    //const tokenOptions= tokenLife ? {expiresIn: tokenLife} : {};
+    const token = jwt.sign(payload, secret, {expiresIn: tokenLife});
 
     if (!token) {
-      throw new Error();
+      throw new Error('Token generation failed');
     }
 
     res.status(200).json({
@@ -305,7 +309,7 @@ router.get(
 );
 
 router.get(
-  '/google/callback',
+  'auth/google/callback',
   passport.authenticate('google', {
     failureRedirect: `${keys.app.clientURL}/login`,
     session: false

@@ -9,7 +9,7 @@ import axios from 'axios';
 
 import { FETCH_WISHLIST, SET_WISHLIST_LOADING } from './constants';
 import handleError from '../../utils/error';
-const {API_URL} = require('../../constants');
+const {API_URL} = require('../../constants/constant');
 //import { API_URL } from '../../constants';
 
 export const updateWishlist = (isLiked, productId) => {

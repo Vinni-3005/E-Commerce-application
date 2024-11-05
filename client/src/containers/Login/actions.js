@@ -21,7 +21,7 @@ import handleError from '../../utils/error';
 import { clearCart } from '../Cart/actions';
 import { clearAccount } from '../Account/actions';
 import { allFieldsValidation } from '../../utils/validation';
-const {API_URL} = require('../../constants');
+const {API_URL} = require('../../constants/constant');
 //import { API_URL } from '../../constants';
 
 export const loginChange = (name, value) => {

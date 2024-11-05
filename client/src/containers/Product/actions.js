@@ -34,8 +34,8 @@ import {API_URL } from '../../constants/constant'
 import handleError from '../../utils/error';
 import { formatSelectOptions, unformatSelectOptions } from '../../utils/select';
 import { allFieldsValidation } from '../../utils/validation';
-const apiBase = process.env.REACT_APP_API_URL;
-console.log("API BASE",apiBase)
+//const apiBase = process.env.REACT_APP_API_URL;
+//console.log("API BASE",apiBase)
 
 export const productChange = (name, value) => {
   let formData = {};
@@ -132,7 +132,10 @@ export const fetchStoreProduct = slug => {
     dispatch(setProductLoading(true));
 
     try {
-      const response = await axios.get(`${API_URL}/product`);
+      
+      const response = await axios.get(`${API_URL}/product` , {
+        
+      });
 
       const inventory = response.data.product.quantity;
       const product = { ...response.data.product, inventory };
@@ -172,7 +175,7 @@ export const fetchProducts = () => {
     try {
       dispatch(setProductLoading(true));
 
-      const response = await axios.get(`${API_URL}/product`);
+      const response = await axios.get(`${API_URL}/products`);
 
       dispatch({
         type: FETCH_PRODUCTS,

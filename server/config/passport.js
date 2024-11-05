@@ -15,7 +15,7 @@ const secret = keys.jwt.secret;
 
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = '3409b1309661094541f918184f6f5f7278172cba09811249b6c2c7f0af5a7e67b87eb8f525c59c6624a7039199bed6247fd29a321da0d8cc0349d006f7b18bc1';                //opts.secretOrKey = secret;
+opts.secretOrKey = '6fc5f2bb5cae44f0c93ed61687166b42fe1b3332521f945f95a7eaacc9413dc5';                //opts.secretOrKey = secret;
 
 passport.use(
   new JwtStrategy(opts, (payload, done) => {

@@ -56,17 +56,30 @@ export const brandEditChange = (name, value) => {
 export const fetchStoreBrands = () => {
   return async (dispatch, getState) => {
     try {
-        const response = await axios.get(`${API_URL}/brand/list`);
-
+        const token = localStorage.getItem('token') // retrieve the token
+        const response = await axios.get(`${API_URL}/brand` , {
+          headers: {
+            Authorization: `Bearer ${token}` // Include the token in the header
+          }
+        });
+          
+        
       dispatch({
         type: FETCH_STORE_BRANDS,
         payload: response.data.brands
       });
     } catch (error) {
-      handleError(error, dispatch);
-    }
+      //handleError(error, dispatch);
+      console.error('Error fetching brands:', error.response.data); // Log the error response
+      dispatch({
+        type: BRAND_FETCH_FAIL,
+        payload: error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+      })
+      };
   };
-};
+}
 
 // fetch brands api
 export const fetchBrands = () => {

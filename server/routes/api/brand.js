@@ -9,7 +9,11 @@ const auth = require('../../middleware/auth');
 const role = require('../../middleware/role');
 const store = require('../../utils/store');
 const { ROLES, MERCHANT_STATUS } = require('../../constants');
-const {API_URL} = require('../../constants/constant');
+const { API_URL } = require('../../../client/src/constants');
+// accessed the API_URL from .env file nd ensured that dotenv is configured or not for this added below lines
+//const API_URL = process.env.API_URL;
+//require('dotenv').config();
+//const {API_URL} = require('../../constants/constant');
 //import {API_URL } from '../../constants/constant';
 
 router.post('/add', auth, role.check(ROLES.Admin), async (req, res) => {
@@ -45,7 +49,8 @@ router.post('/add', auth, role.check(ROLES.Admin), async (req, res) => {
 });
 
 // fetch store brands api
-router.get(`${API_URL}/brand/list`, async (req, res) => {
+// removing ${API_URL}
+router.get(`${API_URL}/brand`, async (req, res) => {
   try {
     const brands = await Brand.find({
       isActive: true
