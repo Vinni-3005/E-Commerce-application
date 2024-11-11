@@ -22,7 +22,7 @@ import {
   RESET_PRODUCT_SHOP
 } from '../Product/constants';
 
-const {API_URL} = require('../../constants')
+const {API_URL} = require('../../constants/constant')
 import { CART_ID, CART_ITEMS, CART_TOTAL } from '../../constants';
 import handleError from '../../utils/error';
 import { allFieldsValidation } from '../../utils/validation';

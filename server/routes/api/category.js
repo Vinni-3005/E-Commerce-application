@@ -8,9 +8,10 @@ const auth = require('../../middleware/auth');
 const role = require('../../middleware/role');
 const store = require('../../utils/store');
 const { ROLES } = require('../../constants');
+//import {API_URL } from '../../../client/src/constants/constant';
+//const { API_URL } = require('../../../client/src/constants/constant');
 
-const { API_URL } = require('../../../client/src/constants');
-
+const { API_URL } = require('../../constants/constant');
 router.post('category/list', auth, role.check(ROLES.Admin), (req, res) => {
   const name = req.body.name;
   const description = req.body.description;

@@ -17,7 +17,7 @@ import {
 import { signOut } from '../Login/actions';
 import handleError from '../../utils/error';
 import { allFieldsValidation } from '../../utils/validation';
-const {API_URL} = require('../../constants');
+const {API_URL} = require('../../constants/constant');
 //import { API_URL } from '../../constants';
 
 export const resetPasswordChange = (name, value) => {

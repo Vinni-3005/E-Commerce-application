@@ -16,7 +16,7 @@ services:
       - PORT=3000
       - BASE_API_URL=api
       - CLIENT_URL=http://localhost:8080
-      - JWT_SECRET=3409b1309661094541f918184f6f5f7278172cba09811249b6c2c7f0af5a7e67b87eb8f525c59c6624a7039199bed6247fd29a321da0d8cc0349d006f7b18bc1
+      - JWT_SECRET=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MWY2NDE2NDIxMDYyM2I1MGE0NGI5MCIsImlhdCI6MTczMTMxNDk5NSwiZXhwIjoxNzM2NDk4OTk1fQ.wqI08azA5593Z1eSRAUrPa4e5V9gkWTAikqxda8s5c0
       - MONGO_URI=mongodb://mongo:27017/mern_ecommerce # Default Mongo URL & DB name when running project locally
     ports:
       - '3000:3000'

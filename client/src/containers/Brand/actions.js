@@ -59,7 +59,7 @@ export const fetchStoreBrands = () => {
         const token = localStorage.getItem('token') // retrieve the token
         const response = await axios.get(`${API_URL}/brand` , {
           headers: {
-            Authorization: `Bearer ${token}` // Include the token in the header
+            Authorization: `Bearer ${'token'}` // Include the token in the header
           }
         });
           
@@ -71,12 +71,6 @@ export const fetchStoreBrands = () => {
     } catch (error) {
       //handleError(error, dispatch);
       console.error('Error fetching brands:', error.response.data); // Log the error response
-      dispatch({
-        type: BRAND_FETCH_FAIL,
-        payload: error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-      })
       };
   };
 }

@@ -30,6 +30,10 @@ app.use(cors({
 
 setupDB();
 require('./config/passport')(app);
+
+app.get('/', (req, res) => {
+  res.send('Welcome to the backend server!');
+});
 app.use(routes);
 
 const server = app.listen(port, () => {
