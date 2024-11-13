@@ -15,6 +15,7 @@ const mailchimp = require('../../services/mailchimp');
 const mailgun = require('../../services/mailgun');
 const keys = require('../../config/keys');
 const { EMAIL_PROVIDER, JWT_COOKIE } = require('../../constants');
+const {API_URL} = require('../')
 
 const { secret, tokenLife } = keys.jwt;
 
@@ -47,6 +48,8 @@ router.post('/login', async (req, res) => {
 
     //compare password
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log("Password match result:", isMatch);
+    
 
     if (!isMatch) {
       return res.status(400).json({
@@ -128,6 +131,7 @@ router.post('/register', async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(user.password, salt);
+    //console.log("hashed password", user.password);
 
     user.password = hash;
     const registeredUser = await user.save();

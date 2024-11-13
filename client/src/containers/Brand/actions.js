@@ -74,7 +74,6 @@ export const fetchStoreBrands = () => {
       };
   };
 }
-
 // fetch brands api
 export const fetchBrands = () => {
   return async (dispatch, getState) => {
