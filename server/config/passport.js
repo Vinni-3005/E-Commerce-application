@@ -15,7 +15,7 @@ const secret = keys.jwt.secret;
 
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MWY2NDE2NDIxMDYyM2I1MGE0NGI5MCIsImlhdCI6MTczMTMyMjkxNiwiZXhwIjoxNzM2NTA2OTE2fQ.bgxppx0LfU-HpxL3RTgj0b3k4x-rc71GaKfVEh5R5wA'
+opts.secretOrKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MzMxMThjMGZiYTAyMjI2NDkwODNhYyIsImlhdCI6MTczMTU3MjkyNCwiZXhwIjoxNzM2NzU2OTI0fQ.4x-iprURWsPSlsOglfymI1DyXt0Bieg_vTRhl6eFFa4'
 passport.use(
   new JwtStrategy(opts, (payload, done) => {
     User.findById(payload.id)
