@@ -7,7 +7,7 @@ const Category = require('../../models/category');
 const auth = require('../../middleware/auth');
 const role = require('../../middleware/role');
 const store = require('../../utils/store');
-const { ROLES } = require('../../constants');
+const { ROLES } = require('../../constants/index');
 //import {API_URL } from '../../../client/src/constants/constant';
 //const { API_URL } = require('../../../client/src/constants/constant');
 

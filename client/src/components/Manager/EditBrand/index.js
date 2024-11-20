@@ -12,7 +12,7 @@ import { Row, Col } from 'reactstrap';
 import Input from '../../Common/Input';
 import Button from '../../Common/Button';
 import Switch from '../../Common/Switch';
-import { ROLES } from '../../../constants';
+import { ROLES } from '../../../constants/index';
 
 const EditBrand = props => {
   const {

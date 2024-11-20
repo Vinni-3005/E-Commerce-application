@@ -6,7 +6,7 @@
 
 import React from 'react';
 
-import { ROLES } from '../../../constants';
+import { ROLES } from '../../../constants/index';
 import Badge from '../../Common/Badge';
 
 const UserRole = props => {

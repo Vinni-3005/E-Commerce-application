@@ -1,6 +1,6 @@
 const Mongoose = require('mongoose');
 
-const { ROLES, EMAIL_PROVIDER } = require('../constants');
+const { ROLES, EMAIL_PROVIDER } = require('../constants/index');
 
 const { Schema } = Mongoose;
 

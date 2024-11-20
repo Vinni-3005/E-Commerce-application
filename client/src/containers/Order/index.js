@@ -9,7 +9,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
-import { ROLES } from '../../constants';
+import { ROLES } from '../../constants/index';
 import actions from '../../actions';
 import List from './List';
 import Customer from './Customer';

@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 
 // Bring in Models & Helpers
-const { MERCHANT_STATUS, ROLES } = require('../../constants');
+const { MERCHANT_STATUS, ROLES } = require('../../constants/index');
 const Merchant = require('../../models/merchant');
 const User = require('../../models/user');
 const Brand = require('../../models/brand');

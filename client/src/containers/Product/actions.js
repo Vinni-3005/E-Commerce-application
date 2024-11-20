@@ -30,7 +30,8 @@ import {
 //const {API_URL} = require('../../constants');
 //import { API_URL, ROLES } from '../../constants';
 
-import {API_URL } from '../../constants/constant'
+import {API_URL } from '../../constants/constant';
+import {ROLES} from '../../constants/index';
 import handleError from '../../utils/error';
 import { formatSelectOptions, unformatSelectOptions } from '../../utils/select';
 import { allFieldsValidation } from '../../utils/validation';

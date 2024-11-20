@@ -9,7 +9,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, DropdownItem } from 'reactstrap';
 
-import { ROLES, CART_ITEM_STATUS } from '../../../constants';
+import { ROLES, CART_ITEM_STATUS } from '../../../constants/index';
 import Button from '../../Common/Button';
 import DropdownConfirm from '../../Common/DropdownConfirm';
 

@@ -9,7 +9,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import actions from '../../actions';
-import { ROLES } from '../../constants';
+import { ROLES } from '../../constants/index';
 
 import BrandList from '../../components/Manager/BrandList';
 import SubPage from '../../components/Manager/SubPage';
