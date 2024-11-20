@@ -60,7 +60,7 @@ router.post('/login', async (req, res) => {
     
     //generate jwt token
     const payload = {
-      id: user.id
+      id: user._id
     };
     //const tokenOptions= tokenLife ? {expiresIn: tokenLife} : {};
     const token = jwt.sign(payload, secret, {expiresIn: tokenLife});
