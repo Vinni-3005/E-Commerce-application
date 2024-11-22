@@ -14,8 +14,9 @@ const User = require('../../models/user');
 const mailchimp = require('../../services/mailchimp');
 const mailgun = require('../../services/mailgun');
 const keys = require('../../config/keys');
-const { EMAIL_PROVIDER, JWT_COOKIE } = require('../../constants');
 const {API_URL} = require('../../constants/constant');
+const { EMAIL_PROVIDER, JWT_COOKIE } = require('../../constants');
+
 
 
 
@@ -62,10 +63,12 @@ router.post('/login', async (req, res) => {
     
     //generate jwt token
     const payload = {
-      id: user._id
+      id: user._id,
+      fullname : `${user.firstName} ${user.lastName}`,
+      role: user.role
     };
     //const tokenOptions= tokenLife ? {expiresIn: tokenLife} : {};
-    const token = jwt.sign(payload, secret, {expiresIn: tokenLife});
+    const token = jwt.sign(payload, secret, { noTimestamp: true});
 
     if (!token) {
       throw new Error('Token generation failed');
@@ -149,7 +152,7 @@ router.post('/register', async (req, res) => {
       registeredUser
     );
 
-    const token = jwt.sign(payload, secret, { expiresIn: tokenLife });
+    const token = jwt.sign(payload, secret, { noTimestamp : true });
 
     res.status(200).json({
       success: true,
@@ -326,7 +329,7 @@ router.get(
     };
 
     // TODO find another way to send the token to frontend
-    const token = jwt.sign(payload, secret, { expiresIn: tokenLife });
+    const token = jwt.sign(payload, secret, { noTimestamp : true });
     const jwtToken = `Bearer ${token}`;
     res.redirect(`${keys.app.clientURL}/auth/success?token=${jwtToken}`);
   }
@@ -350,7 +353,7 @@ router.get(
     const payload = {
       id: req.user.id
     };
-    const token = jwt.sign(payload, secret, { expiresIn: tokenLife });
+    const token = jwt.sign(payload, secret, {noTimestamp : true  });
     const jwtToken = `Bearer ${token}`;
     res.redirect(`${keys.app.clientURL}/auth/success?token=${jwtToken}`);
   }

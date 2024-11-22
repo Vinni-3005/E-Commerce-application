@@ -7,8 +7,6 @@
 import React from 'react';
 
 import { GoogleIcon, FacebookIcon } from '../Icon';
-//const {API_URL} = require('../../../constants');
-//import { API_URL } from '../../../constants';
 import {API_URL } from '../../../constants/constant';
 const SignupProvider = () => {
   return (
