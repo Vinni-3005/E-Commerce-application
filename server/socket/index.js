@@ -2,7 +2,7 @@ const socketio = require('socket.io');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
-const { ROLES } = require('../constants/index');
+const { ROLES } = require('../constants');
 const keys = require('../config/keys');
 const User = mongoose.model('User');
 

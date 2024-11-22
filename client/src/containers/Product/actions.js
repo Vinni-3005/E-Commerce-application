@@ -27,16 +27,13 @@ import {
   RESET_ADVANCED_FILTERS
 } from './constants';
 
-//const {API_URL} = require('../../constants');
-//import { API_URL, ROLES } from '../../constants';
 
 import {API_URL } from '../../constants/constant';
-import {ROLES} from '../../constants/index';
+import {ROLES} from '../../constants';
 import handleError from '../../utils/error';
 import { formatSelectOptions, unformatSelectOptions } from '../../utils/select';
 import { allFieldsValidation } from '../../utils/validation';
-//const apiBase = process.env.REACT_APP_API_URL;
-//console.log("API BASE",apiBase)
+
 
 export const productChange = (name, value) => {
   let formData = {};
@@ -159,7 +156,11 @@ export const fetchStoreProduct = slug => {
 export const fetchProductsSelect = () => {
   return async (dispatch, getState) => {
     try {
+      const token = localStorage.getItem('token')
       const response = await axios.get(`${API_URL}/product/select`);
+      headers: {
+        Authorization: `Bearer ${'token'}` // Include the token in the header
+      }
 
       const formattedProducts = formatSelectOptions(response.data.products);
 
@@ -197,7 +198,9 @@ export const fetchProducts = () => {
 export const fetchProduct = id => {
   return async (dispatch, getState) => {
     try {
+      
       const response = await axios.get(`${API_URL}/product/${id}`);
+      
 
       const inventory = response.data.product.quantity;
 

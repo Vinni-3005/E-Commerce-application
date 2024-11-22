@@ -15,8 +15,8 @@ const mailchimp = require('../../services/mailchimp');
 const mailgun = require('../../services/mailgun');
 const keys = require('../../config/keys');
 const { EMAIL_PROVIDER, JWT_COOKIE } = require('../../constants');
-//import { API_URL } from '../../../client/src/constants';
-const {API_URL} = require('../../../client/src/constants/constant');
+const {API_URL} = require('../../constants/constant');
+
 
 
 const { secret, tokenLife } = keys.jwt;

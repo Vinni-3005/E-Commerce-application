@@ -9,7 +9,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import actions from '../../actions';
-import { ROLES } from '../../constants/index';
+import { ROLES } from '../../constants';
 import dashboardLinks from './links.json';
 import { isDisabledMerchantAccount } from '../../utils/app';
 import Admin from '../../components/Manager/Dashboard/Admin';

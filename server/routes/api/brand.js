@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 
@@ -8,14 +9,14 @@ const Merchant = require('../../models/merchant');
 const auth = require('../../middleware/auth');
 const role = require('../../middleware/role');
 const store = require('../../utils/store');
-const { ROLES, MERCHANT_STATUS } = require('../../constants/index');
-
+const { ROLES, MERCHANT_STATUS } = require('../../constants');
+const {API_URL} = require('../../constants/constant');
 
 //const { API_URL } = require('../../../client/src/constants/constant');
 // accessed the API_URL from .env file nd ensured that dotenv is configured or not for this added below lines
 //const API_URL = process.env.API_URL;
-//require('dotenv').config();
-const {API_URL} = require('../../../client/src/constants/constant');
+
+//const {API_URL} = require('../../../client/src/constants/constant');
 //import {API_URL } from '../../../client/src/constants/constant';
 
 router.post('/add', auth, role.check(ROLES.Admin), async (req, res) => {
@@ -52,7 +53,7 @@ router.post('/add', auth, role.check(ROLES.Admin), async (req, res) => {
 
 // fetch store brands api
 // removing ${API_URL}
-router.get(`/brand`, async (req, res) => {
+router.get(`/api/brand`, async (req, res) => {
   try {
     const brands = await Brand.find({
       isActive: true

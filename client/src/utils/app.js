@@ -1,4 +1,4 @@
-import { ROLES, EMAIL_PROVIDER } from '../constants/index';
+import { ROLES, EMAIL_PROVIDER } from '../constants';
 
 export const isProviderAllowed = provider =>
   provider === EMAIL_PROVIDER.Google || provider === EMAIL_PROVIDER.Facebook;

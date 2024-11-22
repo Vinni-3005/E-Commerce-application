@@ -15,12 +15,12 @@ const {
   getStoreProductsQuery,
   getStoreProductsWishListQuery
 } = require('../../utils/queries');
-const { ROLES } = require('../../constants/index');
+const { ROLES } = require('../../constants');
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
-//const { API_URL } = require('../../constants/constant');
-const { API_URL } = require('../../../client/src/constants/constant');
+const { API_URL } = require('../../constants/constant');
+//const { API_URL } = require('../../../client/src/constants/constant');
 // fetch product slug api
 router.get('/item/:slug', async (req, res) => {
   try {

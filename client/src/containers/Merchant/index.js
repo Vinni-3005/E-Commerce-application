@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
 import actions from '../../actions';
-import { ROLES } from '../../constants/index';
+import { ROLES } from '../../constants';
 import List from './List';
 import Add from './Add';
 import Page404 from '../../components/Common/Page404';
