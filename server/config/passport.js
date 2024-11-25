@@ -6,6 +6,7 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 const mongoose = require('mongoose');
 
 const keys = require('./keys');
+const User = require ('../models/user');
 const { EMAIL_PROVIDER } = require('../constants');
 
 const { google, facebook } = keys;
@@ -13,9 +14,11 @@ const { google, facebook } = keys;
 const User = mongoose.model('User');
 const secret = keys.jwt.secret;
 
-const opts = {};
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = process.env.JWT_SECRET;
+const opts = {
+  jwtFromRequest : ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey : process.env.JWT_SECRET,
+};
+
 passport.use(
   new JwtStrategy(opts, (payload, done) => {
     User.findById(payload.id)

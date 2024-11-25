@@ -27,13 +27,13 @@ router.use('/address', addressRoutes);
 router.use('/newsletter', newsletterRoutes);
 
 // product routes
-router.use('/product', productRoutes);
+router.use('/products', productRoutes);
 
 // category routes
 router.use('/category', categoryRoutes);
 
 // brand routes
-router.use('/brand', brandRoutes);
+router.use('/brands', brandRoutes);
 
 // contact routes
 router.use('/contact', contactRoutes);

@@ -158,9 +158,9 @@ export const fetchProductsSelect = () => {
     try {
       //const token = localStorage.getItem('token')
       const response = await axios.get(`${API_URL}/product/select`);
-      /*headers: {
+      headers: {
         Authorization: `Bearer ${'token'}` // Include the token in the header
-      }*/
+      }
 
       const formattedProducts = formatSelectOptions(response.data.products);
 
