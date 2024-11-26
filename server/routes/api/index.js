@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const authRoutes = require('./auth');
+const authRoutes = require('../../routes/api/auth');
 const userRoutes = require('./user');
 const addressRoutes = require('./address');
 const newsletterRoutes = require('./newsletter');
@@ -15,7 +15,7 @@ const reviewRoutes = require('./review');
 const wishlistRoutes = require('./wishlist');
 
 // auth routes
-router.use('/auth', authRoutes);
+router.use('/api/auth', authRoutes);
 
 // user routes
 router.use('/user', userRoutes);
@@ -33,7 +33,7 @@ router.use('/products', productRoutes);
 router.use('/category', categoryRoutes);
 
 // brand routes
-router.use('/brands', brandRoutes);
+router.use('/Brands', brandRoutes);
 
 // contact routes
 router.use('/contact', contactRoutes);

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const passport = require('passport');
 const JwtStrategy = require('passport-jwt').Strategy;
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
@@ -6,7 +7,7 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 const mongoose = require('mongoose');
 
 const keys = require('./keys');
-const User = require ('../models/user');
+//const User = require ('../models/user');
 const { EMAIL_PROVIDER } = require('../constants');
 
 const { google, facebook } = keys;
@@ -47,9 +48,9 @@ const googleAuth = async () => {
     passport.use(
       new GoogleStrategy(
         {
-          clientID: google.clientID,
-          clientSecret: google.clientSecret,
-          callbackURL: google.callbackURL
+          clientID: process.env.GOOGLE_CLIENT_ID,
+          clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+          callbackURL: process.env.GOOGLE_CALLBACK_URL,
         },
         (accessToken, refreshToken, profile, done) => {
           User.findOne({ email: profile.email })

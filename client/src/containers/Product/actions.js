@@ -131,7 +131,7 @@ export const fetchStoreProduct = slug => {
 
     try {
       
-      const response = await axios.get(`${API_URL}/product` , {
+      const response = await axios.get(`${API_URL}/Products` , {
         /*headers: {
           Authorization: `Bearer ${token}` // Include the token in the header
         }*/

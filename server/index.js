@@ -1,4 +1,4 @@
-require('dotenv').config();
+const passport = require('passport');
 const express = require('express');
 const chalk = require('chalk');
 const cors = require('cors');

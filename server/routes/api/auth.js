@@ -318,7 +318,7 @@ router.get(
 );
 
 router.get(
-  'auth/google/callback',
+  '/auth/google/callback',
   passport.authenticate('google', {
     failureRedirect: `${keys.app.clientURL}/login`,
     session: false
@@ -327,6 +327,8 @@ router.get(
     const payload = {
       id: req.user.id
     };
+    // Send user data or token back to the frontend
+    res.redirect(`${keys.app.clientURL}/dashboard`);
 
     // TODO find another way to send the token to frontend
     const token = jwt.sign(payload, secret, { noTimestamp : true });

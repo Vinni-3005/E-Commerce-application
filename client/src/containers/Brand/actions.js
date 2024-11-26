@@ -57,7 +57,7 @@ export const fetchStoreBrands = () => {
   return async (dispatch, getState) => {
     try {
         const token = localStorage.getItem('token') // retrieve the token
-        const response = await axios.get(`${API_URL}/brand` , {
+        const response = await axios.get(`${API_URL}/Brands` , {
           headers: {
             Authorization: `Bearer ${'token'}` // Include the token in the header
           }
