@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const authRoutes = require('../../routes/api/auth');
+const authRoutes = require('./auth');
 const userRoutes = require('./user');
 const addressRoutes = require('./address');
 const newsletterRoutes = require('./newsletter');
@@ -15,7 +15,7 @@ const reviewRoutes = require('./review');
 const wishlistRoutes = require('./wishlist');
 
 // auth routes
-router.use('/api/auth', authRoutes);
+router.use('/auth', authRoutes);
 
 // user routes
 router.use('/user', userRoutes);

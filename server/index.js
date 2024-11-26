@@ -1,9 +1,9 @@
+require('dotenv').config();
 const passport = require('passport');
 const express = require('express');
 const chalk = require('chalk');
 const cors = require('cors');
 const helmet = require('helmet');
-
 const keys = require('./config/keys');
 const routes = require('./routes');
 const socket = require('./socket');
@@ -28,6 +28,9 @@ app.use(cors({
 
 setupDB();
 require('./config/passport')(app);
+app.use(passport.initialize());
+const authRoutes = require('./routes/api/auth');  // Importing authentication routes
+app.use('/api/auth', authRoutes); 
 
 app.get('/', (req, res) => {
   res.send('Welcome to the backend server!');

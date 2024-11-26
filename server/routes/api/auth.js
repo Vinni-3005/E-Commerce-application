@@ -16,6 +16,7 @@ const mailgun = require('../../services/mailgun');
 const keys = require('../../config/keys');
 const {API_URL} = require('../../constants/constant');
 const { EMAIL_PROVIDER, JWT_COOKIE } = require('../../constants');
+const user = require('../../models/user');
 
 
 
@@ -318,22 +319,24 @@ router.get(
 );
 
 router.get(
-  '/auth/google/callback',
+  '/google/callback',
   passport.authenticate('google', {
     failureRedirect: `${keys.app.clientURL}/login`,
     session: false
   }),
   (req, res) => {
     const payload = {
-      id: req.user.id
+      id: req.user._id,
+      fullname : req.user.firstName,
+      role : req.user.role
     };
     // Send user data or token back to the frontend
-    res.redirect(`${keys.app.clientURL}/dashboard`);
 
     // TODO find another way to send the token to frontend
-    const token = jwt.sign(payload, secret, { noTimestamp : true });
+    
+    const token = jwt.sign(payload, keys.jwt.secret, { noTimestamp : true });
     const jwtToken = `Bearer ${token}`;
-    res.redirect(`${keys.app.clientURL}/auth/success?token=${jwtToken}`);
+    res.redirect(`${keys.app.clientURL}/auth/success`);
   }
 );
 
