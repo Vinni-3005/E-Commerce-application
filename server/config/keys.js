@@ -10,7 +10,7 @@ module.exports = {
   },
   jwt: {
     secret: process.env.JWT_SECRET,
-    tokenLife: '60d'
+    tokenLife: '7d'
   },
   mailchimp: {
     key: process.env.MAILCHIMP_KEY,

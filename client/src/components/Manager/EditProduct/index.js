@@ -141,7 +141,8 @@ const EditProduct = props => {
               }}
             />
           </Col>
-          {user.role === ROLES.Admin && (
+          {/* show brand select option for admin and merchant */}
+          {(user.role === ROLES.Admin || user.role == ROLES.Merchant) && (
             <Col xs='12' md='12'>
               <SelectOption
                 error={formErrors['brand']}
@@ -155,31 +156,38 @@ const EditProduct = props => {
               />
             </Col>
           )}
-          <Col xs='12' md='12' className='mt-3 mb-2'>
-            <Switch
-              id={`enable-product-${product._id}`}
-              name={'isActive'}
-              label={'Active?'}
-              checked={product?.isActive}
-              toggleCheckboxChange={value => {
-                productChange('isActive', value);
-                activateProduct(product._id, value);
-              }}
-            />
-          </Col>
+          {/* merchants can edit product status but can't change brand */}
+          {(user.role == ROLES.Admin || user.role == ROLES.Merchant) && (
+            <Col xs='12' md='12' className='mt-3 mb-2'>
+              <Switch
+                id={`enable-product-${product._id}`}
+                name={'isActive'}
+                label={'Active?'}
+                checked={product?.isActive}
+                toggleCheckboxChange={value => {
+                  productChange('isActive', value);
+                  activateProduct(product._id, value);
+                }}
+              />
+            </Col>
+          )}
         </Row>
         <hr />
         <div className='d-flex flex-column flex-md-row'>
+          {/* show save button to all users */}
           <Button
             type='submit'
             text='Save'
             className='mb-3 mb-md-0 mr-0 mr-md-3'
           />
-          <Button
-            variant='danger'
-            text='Delete'
-            onClick={() => deleteProduct(product._id)}
-          />
+          {/*show delete button for admin and merchants  */}
+          {(user.role == ROLES.Admin || user.role == ROLES.Merchant) && (
+            <Button
+              variant='danger'
+              text='Delete'
+              onClick={() => deleteProduct(product._id)}
+            />
+          )}
         </div>
       </form>
     </div>

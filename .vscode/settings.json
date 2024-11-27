@@ -7,5 +7,6 @@
   "javascript.preferences.quoteStyle": "single",
   "jumpToAliasFile.alias": {
     "app": "client/app"
-  }
+  },
+  "workbench.externalBrowser": "chrome"
 }
