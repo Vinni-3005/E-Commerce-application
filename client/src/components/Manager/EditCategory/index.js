@@ -30,6 +30,8 @@ const EditCategory = props => {
     updateCategory();
   };
 
+  const isAuthorized = user.role == ROLES.Admin || user.role == ROLES.Merchant;
+
   return (
     <div className='edit-category'>
       <div className='d-flex flex-row mx-0 mb-3'>
