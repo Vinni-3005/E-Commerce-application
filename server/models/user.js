@@ -48,11 +48,7 @@ const UserSchema = new Schema({
     default: ROLES.Member,
     enum: [ROLES.Admin, ROLES.Member, ROLES.Merchant]
   },
-  permissions : { 
-    products : { add:false , edit:false, delete:false},
-    categories : { add:false , edit:false, delete:false },
-    brands : { add:false , edit: false, delete: false},
-  },
+  
   resetPasswordToken: { type: String },
   resetPasswordExpires: { type: Date },
   updated: Date,

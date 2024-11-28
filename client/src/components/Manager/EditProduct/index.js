@@ -9,7 +9,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 
-import { ROLES } from '../../../constants';
+//import { ROLES } from '../../../constants';
 import Input from '../../Common/Input';
 import Switch from '../../Common/Switch';
 import Button from '../../Common/Button';
@@ -144,7 +144,7 @@ const EditProduct = props => {
             />
           </Col>
           {/* show brand select option for admin and merchant */}
-          {(user.role === ROLES.Admin || user.role == ROLES.Merchant) && (
+          {/*{(user.role === ROLES.Admin || user.role == ROLES.Merchant) && (*/}
             <Col xs='12' md='12'>
               <SelectOption
                 error={formErrors['brand']}
@@ -157,9 +157,8 @@ const EditProduct = props => {
                 }}
               />
             </Col>
-          )}
           {/* merchants can edit product status but can't change brand */}
-          {(user.role == ROLES.Admin || user.role == ROLES.Merchant) && (
+          {/*{(user.role == ROLES.Admin || user.role == ROLES.Merchant) && (*/}
             <Col xs='12' md='12' className='mt-3 mb-2'>
               <Switch
                 id={`enable-product-${product._id}`}
@@ -172,7 +171,6 @@ const EditProduct = props => {
                 }}
               />
             </Col>
-          )}
         </Row>
         <hr />
         <div className='d-flex flex-column flex-md-row'>
@@ -183,13 +181,12 @@ const EditProduct = props => {
             className='mb-3 mb-md-0 mr-0 mr-md-3'
           />
           {/*show delete button for admin and merchants  */}
-          {(user.role == ROLES.Admin || user.role == ROLES.Merchant) && (
+          {/*{(user.role == ROLES.Admin || user.role == ROLES.Merchant) && (*/}
             <Button
               variant='danger'
               text='Delete'
               onClick={() => deleteProduct(product._id)}
             />
-          )}
         </div>
       </form>
     </div>

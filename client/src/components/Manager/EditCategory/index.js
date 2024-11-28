@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import ROLES from '../../../constants/index';
+//import ROLES from '../../../constants/index';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import Input from '../../Common/Input';
@@ -30,7 +30,7 @@ const EditCategory = props => {
     updateCategory();
   };
 
-  const isAuthorized = user.role == ROLES.Admin || user.role == ROLES.Merchant;
+  //const isAuthorized = user.role == ROLES.Admin || user.role == ROLES.Merchant;
 
   return (
     <div className='edit-category'>
@@ -82,7 +82,7 @@ const EditCategory = props => {
             />
           </Col>
           {/* allow both admin and merchant to select products  */}
-          {(user.role == ROLES.Admin || user.role == ROLES.Merchant) && (
+          {/*{(user.role == ROLES.Admin || user.role == ROLES.Merchant) && (*/}
             <Col xs='12' md='12'>
               <SelectOption
                 error={formErrors['products']}
@@ -95,9 +95,8 @@ const EditCategory = props => {
                 }}
               />
             </Col>
-          )}
           {/*admins and merchants will be able add category */}
-          {(user.role == ROLES.Admin || user.role == ROLES.Merchant) && (
+          {/*{(user.role == ROLES.Admin || user.role == ROLES.Merchant) && (*/}
             <Col xs='12' md='12' className='mt-3 mb-2'>
               <Switch
                 style={{ width: 100 }}
@@ -112,7 +111,6 @@ const EditCategory = props => {
               }
               />
             </Col>
-          )}
         </Row>
         <hr />
         <div className='d-flex flex-column flex-md-row'>
@@ -122,13 +120,12 @@ const EditCategory = props => {
             className='mb-3 mb-md-0 mr-0 mr-md-3'
           />
           {/* show delete button for both admin and merchant */}
-          {( user.role == ROLES.Admin || user.role == ROLES.Merchant ) && (
+          {/*{( user.role == ROLES.Admin || user.role == ROLES.Merchant ) && (*/}
             <Button
               variant='danger'
               text='Delete'
               onClick={() => deleteCategory(category._id)}
             />
-          )}
         </div>
       </form>
     </div>

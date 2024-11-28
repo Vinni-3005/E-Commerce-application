@@ -162,7 +162,7 @@ router.get('/list', async (req, res) => {
   }
 });
 
-router.get('/list/select', auth, async (req, res) => {
+router.get('/brand/list/select', auth, async (req, res) => {
   try {
     const products = await Product.find({}, 'name');
 
@@ -296,7 +296,7 @@ router.get(
 
 // fetch product api
 router.get(
-  '/:id',
+  '/product/:id',
   auth,
   role.check(ROLES.Admin, ROLES.Merchant),
   async (req, res) => {

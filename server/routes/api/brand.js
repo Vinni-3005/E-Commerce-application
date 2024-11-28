@@ -64,7 +64,7 @@ router.get(`/brand`, async (req, res) => {
 
 // fetch brands api
 router.get(
-  '/',
+  '/Brands',
   auth,
   role.check(ROLES.Admin, ROLES.Merchant),
   async (req, res) => {
@@ -116,7 +116,7 @@ router.get('/brand/:brandId', async (req, res) => {
 });
 
 router.get(
-  '/list/select',
+  '/brand/list/select',
   auth,
   role.check(ROLES.Admin, ROLES.Merchant),
   async (req, res) => {

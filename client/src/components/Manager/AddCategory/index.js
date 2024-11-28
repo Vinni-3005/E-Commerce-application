@@ -7,7 +7,7 @@
 import React from 'react';
 
 import { Row, Col } from 'reactstrap';
-import ROLES from '../../../constants/index';
+//import ROLES from '../../../constants/index';
 import Input from '../../Common/Input';
 import Switch from '../../Common/Switch';
 import Button from '../../Common/Button';
@@ -26,11 +26,10 @@ const AddCategory = props => {
     event.preventDefault();
     addCategory();
   };
-  const isAuthorized = user.role == ROLES.Admin || user.role == ROLES.Merchant;
+  //const isAuthorized = user.role == ROLES.Admin || user.role == ROLES.Merchant;
 
   return (
     <div className='add-category'>
-      {isAuthorized ? (
         <form onSubmit={handleSubmit} noValidate>
           <Row>
             <Col xs='12'>
@@ -85,10 +84,7 @@ const AddCategory = props => {
           <div className='add-category-actions'>
             <Button type='submit' text='Add Category' />
           </div>
-        </form>
-      ) : (
-        <p>You dont have permission to add category</p>
-      )}
+        </form> 
     </div>
   );
 };

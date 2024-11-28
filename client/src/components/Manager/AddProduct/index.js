@@ -8,7 +8,7 @@ import React from 'react';
 
 import { Row, Col } from 'reactstrap';
 
-import { ROLES } from '../../../constants';
+//import { ROLES } from '../../../constants';
 import Input from '../../Common/Input';
 import Switch from '../../Common/Switch';
 import Button from '../../Common/Button';
@@ -40,7 +40,7 @@ const AddProduct = props => {
     addProduct();
   };
 
-  const isAuthorized = user.role == ROLES.Admin || user.role == ROLES.Merchant;
+  //const isAuthorized = user.role == ROLES.Admin || user.role == ROLES.Merchant;
 
   return (
     <div className='add-product'>
@@ -129,13 +129,13 @@ const AddProduct = props => {
             {/*Brand {merchant can select but default behaviour is controlled} */}
             <Col xs='12' md='12'>
               <SelectOption
-                //disabled={user.role === ROLES.Merchant}
+                disabled={user.role === ROLES.Merchant}
                 error={formErrors['brand']}
                 name={'brand'}
                 label={'Select Brand'}
                 value={
-                  /*user.role === ROLES.Merchant ? brands[1] : productFormData.brand*/
-                  productFormData.brand
+                  user.role === ROLES.Merchant ? brands[1] : productFormData.brand
+                  /*productFormData.brand*/
                 }
                 options={brands}
                 handleSelectChange={value => {
