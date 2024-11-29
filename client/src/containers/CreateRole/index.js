@@ -8,7 +8,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import actions from '../../actions';
-import subpage from '../../components/Manager/SubPage';
 
 class CreateRoles extends React.PureComponent {
   constructor(props) {
@@ -76,21 +75,31 @@ class CreateRoles extends React.PureComponent {
 
               <div>
                 <label>Assign features:</label>
-                <input
-                  type="checkbox"
-                  id= { feature }
-                  value = {feature}
-                  checked = {features.includes(feature)}
-                  onChange = {() => this.handleFeatureChange}
-                />
+                {availableFeatures.map( (feature) => (
+                  <div key={feature}>
+                    <input
+                      type="checkbox"
+                      id= { feature }
+                      value = {feature}
+                      checked = {features.includes(feature)}
+                      onChange = {() => this.handleFeatureChange}
+                    />
+                    <label htmlFor='{feature}'> {feature} </label>
+                  </div>
+                ))}  
               </div>
+              <button type='submit'>Create Role</button>
             </form>
           </div>
         </subpage>
 
       </div>
-    )
+    );
   }
-
-
 }
+
+const mapDispatchToProps ={
+  createRole : actions.createRole  //redux action for create role 
+}
+
+export default connect(null, mapDispatchToProps)(CreateRoles);
