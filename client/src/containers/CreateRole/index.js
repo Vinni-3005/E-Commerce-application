@@ -13,8 +13,8 @@ class CreateRoles extends React.PureComponent {
     super(props)
     this.state = {
       roleType : '',   // user or merchant
-      roleName : '',  //role name
-      feature : [],  //selected features for merchants
+      userName : '',  //user name
+      features : [],  //selected features for merchants
     };
   }
 
@@ -44,30 +44,30 @@ class CreateRoles extends React.PureComponent {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { roleName,roleType, features } = this.state;
+    const { userName,roleType, features } = this.state;
     const { createRole } = this.props;
 
     //validation 
-    if (!roleType || !roleName) {
+    if (!roleType || !userName) {
       alert('Please fill in the required fields');
       return;
     } 
 
-    if ( roleType === 'merchant' && features.lenght === 0) {
+    if ( roleType === 'merchant' && features.length === 0) {
       alert('Please select atleast one feature for a merchant role');
       return;
     }
 
     //dispatch action to create role
-    createRole({ roleName, roleType, features});
+    createRole({ userName, roleType, features});
 
     //reset the form after successfull submission
-    this.setState( { roleType:'', roleName:'', features:[]});
+    this.setState( { roleType:'', userName:'', features:[]});
   };
 
 
   render () {
-    const { roleName, roleType, features } = this.state;
+    const { userName, roleType, features } = this.state;
     //available features only for merchants
     const merchantFeatures = [
       'Add product',
@@ -98,14 +98,14 @@ class CreateRoles extends React.PureComponent {
             </div>
 
             <div>
-              <label htmlFor='roleName'>Role name:</label>
+              <label htmlFor='userName'>User name:</label>
               <input 
                 type="text"
-                name="roleName"
-                id="roleName"
-                value={roleName}
+                name="userName"
+                id="userName"
+                value={userName}
                 onChange={this.handleInputChange}
-                placeholder="Enter a role name"
+                placeholder="Enter a user name"
                 required
               />
             </div>
