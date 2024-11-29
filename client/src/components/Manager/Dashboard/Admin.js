@@ -23,7 +23,7 @@ import Brand from '../../../containers/Brand';
 import Merchant from '../../../containers/Merchant';
 import Review from '../../../containers/Review';
 import Wishlist from '../../../containers/WishList';
-import CreateRoles from '../../../containers/CreateRoles/CreateRoles';
+import CreateRoles from '../../../containers/CreateRole';
 
 const Admin = props => {
   return (
@@ -46,7 +46,7 @@ const Admin = props => {
               <Route path='/dashboard/orders' component={Order} />
               <Route path='/dashboard/review' component={Review} />
               <Route path='/dashboard/wishlist' component={Wishlist} />
-              <Route path='dashboard/CreateRole' component={CreateRoles}/>
+              <Route path='/dashboard/CreateRole' component={CreateRoles}/>
               <Route path='*' component={Page404} />
             </Switch>
           </div>
