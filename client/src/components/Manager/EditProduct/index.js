@@ -37,7 +37,7 @@ const EditProduct = props => {
     updateProduct();
   };
 
-  const isAuthorized = user.role == ROLES.Admin || user.role == ROLES.Merchant;
+  //const isAuthorized = user.role == ROLES.Admin || user.role == ROLES.Merchant;
 
   return (
     <div className='edit-product'>

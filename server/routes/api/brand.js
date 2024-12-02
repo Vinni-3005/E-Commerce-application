@@ -46,7 +46,7 @@ router.post('/add', auth, role.check(ROLES.Admin), async (req, res) => {
 
 // fetch store brands api
 // removing ${API_URL}
-router.get(`/brand`, async (req, res) => {
+router.get(`/brands`, async (req, res) => {
   try {
     const brands = await Brand.find({
       isActive: true
@@ -64,7 +64,7 @@ router.get(`/brand`, async (req, res) => {
 
 // fetch brands api
 router.get(
-  '/Brands',
+  '/brand',
   auth,
   role.check(ROLES.Admin, ROLES.Merchant),
   async (req, res) => {

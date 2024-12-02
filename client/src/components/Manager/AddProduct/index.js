@@ -44,7 +44,6 @@ const AddProduct = props => {
 
   return (
     <div className='add-product'>
-      {isAuthorized ? (
         <form onSubmit={handleSubmit} noValidate>
           <Row>
             <Col xs='12' lg='6'>
@@ -174,9 +173,6 @@ const AddProduct = props => {
             <Button type='submit' text='Add Product' />
           </div>
         </form>
-      ) : (
-        <p>You don't have permission to add product</p>
-      )}
     </div>
   );
 };
