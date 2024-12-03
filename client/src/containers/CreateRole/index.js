@@ -1,145 +1,102 @@
-/*
+// src/pages/CreateRole.js
+import React, { useState } from 'react';
+import axios from 'axios';
+//import './CreateRole.scss'; // Import SCSS for styling
+import '../../styles/_custom.scss';
 
-CreateRoles page
+const CreateRole = () => {
+  // State variables for storing role name and permissions
+  const [roleName, setRoleName] = useState('');
+  const [permissions, setPermissions] = useState({
+    addresses: false,
+    products: false,
+    categories: false,
+    brand: false,
+    users: false,
+    merchant: false,
+    orders: false,
+    reviews: false,
+    wishlist: false,
+  });
 
-*/
-
-import React from 'react';
-import { connect } from 'react-redux';
-import actions from '../../actions';
-
-class CreateRoles extends React.PureComponent {
-  constructor(props) {
-    super(props)
-    this.state = {
-      roleType : '',   // user or merchant
-      userName : '',  //user name
-      features : [],  //selected features for merchants
-    };
-  }
-
-  //hhande input change for role name and type
-  handleInputChange = (e) => {
-    this.setState({[e.target.name]: e.target.value});
-
-    //reset features if role type changes
-    if (e.target.name === 'roleType') {
-      this.setState ({features :[]});
-    }
+  // Function to handle toggle button change
+  const handleToggleChange = (e) => {
+    const { name } = e.target;
+    setPermissions({
+      ...permissions,
+      [name]: !permissions[name], // Toggle the permission value
+    });
   };
 
-  //handle checkbox feature selection 
-  handleFeatureChange = (feature) => {
-    const { features } = this.state;
-    if (features.includes(feature)) {
-      //remove feature if already selected 
-      this.setState({features:features.filter((f) => f !==feature )});
-    } else {
-      //add feature if not selected
-      this.setState( {features: [...features, feature]});
-    }
-  };
-
-  //handle form submission
-  handleSubmit = (e) => {
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const { userName,roleType, features } = this.state;
-    const { createRole } = this.props;
-
-    //validation 
-    if (!roleType || !userName) {
-      alert('Please fill in the required fields');
-      return;
-    } 
-
-    if ( roleType === 'merchant' && features.length === 0) {
-      alert('Please select atleast one feature for a merchant role');
-      return;
+    try {
+      const response = await axios.post('/api/roles', {
+        roleName,
+        permissions,
+      });
+      alert('Role created successfully');
+      setRoleName('');
+      setPermissions({
+        addresses: false,
+        products: false,
+        categories: false,
+        brand: false,
+        users: false,
+        merchant: false,
+        orders: false,
+        reviews: false,
+        wishlist: false,
+      });
+    } catch (error) {
+      console.error('Error creating role:', error);
+      alert('Failed to create role');
     }
-
-    //dispatch action to create role
-    createRole({ userName, roleType, features});
-
-    //reset the form after successfull submission
-    this.setState( { roleType:'', userName:'', features:[]});
   };
 
-
-  render () {
-    const { userName, roleType, features } = this.state;
-    //available features only for merchants
-    const merchantFeatures = [
-      'Add product',
-      'Edit product',
-      'Addcategory',
-      'Edit category'
-    ];
-
-    return (
-      <div className='create-roles'>
-        <h2>Create a Role</h2>
-        <div className='create-roles-form'>
-          <form onSubmit = {this.handleSubmit}>
-            {/* role type field */}
-            <div>
-              <label htmlFor='roleType'>Role Type:</label>
-              <select
-                name = "roleType"
-                id = "roleType"
-                value = {roleType}
-                onChange={this.handleInputChange}
-                required
-              >
-                <option value="">Select Role Type</option>
-                <option value="user">User</option>
-                <option value="merchant">Merchant</option>
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor='userName'>User name:</label>
-              <input 
-                type="text"
-                name="userName"
-                id="userName"
-                value={userName}
-                onChange={this.handleInputChange}
-                placeholder="Enter a user name"
-                required
-              />
-            </div>
-
-            {/* Features selection (visible for merchants) */}
-            {roleType === 'merchant' && (
-              <div>
-                <label>Assign Features:</label>
-                {merchantFeatures.map((feature) => (
-                  <div key={feature}>
-                    <input 
-                      type='checkbox'
-                      id={feature}
-                      value={feature}
-                      checked={features.includes(feature)}
-                      onChange= { () => this.handleFeatureChange(feature)} 
-                    />
-                    <label htmlFor={feature}>{feature}</label>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* submit button */}
-            <button type='submit'>Create Role</button>
-          </form>
+  return (
+    <div>
+      <h2>Create Role</h2>
+      <form onSubmit={handleSubmit}>
+        {/* Input for role name */}
+        <div>
+          <label>Role Name:</label>
+          <input
+            type="text"
+            value={roleName}
+            onChange={(e) => setRoleName(e.target.value)}
+            required
+          />
         </div>
-      </div>
-    );
-  }
-}
 
-const mapDispatchToProps ={
-  createRole : actions.createRole  //redux action for create role 
-}
+        {/* Toggle buttons for permissions */}
+        <div>
+          <h3>Permissions:</h3>
+          <div className="toggle-buttons-container">
+            {Object.keys(permissions).map((perm) => (
+              <div key={perm} className="toggle-button">
+                <label>{perm.charAt(0).toUpperCase() + perm.slice(1)}</label>
+                <div
+                  className={`switch-checkbox-input ${
+                    permissions[perm] ? 'checked' : ''
+                  }`}
+                  onClick={() => handleToggleChange({ target: { name: perm } })}
+                >
+                  <span className="switch-label">
+                    <span className="switch-label-toggle"></span>
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
-export default connect(null, mapDispatchToProps)(CreateRoles);
+        {/* Submit button */}
+        <button type="submit">Add Role</button>
+      </form>
+    </div>
+  );
+};
+
+export default CreateRole;

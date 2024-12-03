@@ -2,34 +2,50 @@
 
 actions
 
-*/
 
-import axios from 'axios';
-import {ROLE_CREATED, ROLE_CREATE_FAILED} from './constants';
 
-export const createRole = (roleData) => async (dispatch) => {
-    try {
-        //make API req to create a role
-        const response = await axios.post('/api/roles', roleData); 
-
-        //dispatch success action
-        dispatch({
-            type: ROLE_CREATED,
-            payload:response.data, // payload contains newly created roles
-        });
-
-        // show a success notification
-        alert('Role created successfully');
-    } catch (error) {
-        console.error('Error creating role', error);
-
-        //dispatch failure action
-        dispatch ( {
-            type:ROLE_CREATE_FAILED,
-            payload:error.response?.data?.message || 'Failed to create role',
-        });
-
-        //show an error notification
-        alert(error.response?.data?.message || 'Failed to create a role');
-    }
-};
+import {
+    FETCH_ROLES,
+    FETCH_ROLE,
+    ROLE_CHANGE,
+    ROLE_EDIT_CHANGE,
+    SET_ROLE_FORM_ERRORS,
+    ADD_ROLE,
+    REMOVE_ROLE,
+  } from './constants';
+  
+  export const fetchRoles = () => ({
+    type: FETCH_ROLES,
+  });
+  
+  export const fetchRole = (id) => ({
+    type: FETCH_ROLE,
+    payload: id,
+  });
+  
+  export const roleChange = (data) => ({
+    type: ROLE_CHANGE,
+    payload: data,
+  });
+  
+  export const roleEditChange = (data) => ({
+    type: ROLE_EDIT_CHANGE,
+    payload: data,
+  });
+  
+  export const setRoleFormErrors = (errors) => ({
+    type: SET_ROLE_FORM_ERRORS,
+    payload: errors,
+  });
+  
+  export const addRole = (roleData) => ({
+    type: ADD_ROLE,
+    payload: roleData,
+  });
+  
+  export const removeRole = (id) => ({
+    type: REMOVE_ROLE,
+    payload: id,
+  });
+ 
+  */
