@@ -8,7 +8,7 @@ import React from 'react';
 
 import { Row, Col } from 'reactstrap';
 
-//import { ROLES } from '../../../constants';
+import { ROLES } from '../../../constants';
 import Input from '../../Common/Input';
 import Switch from '../../Common/Switch';
 import Button from '../../Common/Button';
@@ -32,15 +32,9 @@ const AddProduct = props => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    //ensure merchant has the necessary permission to create products
-    /*if (user.role == ROLES.Admin || user.role == ROLES.Merchant && !user.permissions.products.add) {
-      alert("You don't have permission to add products");
-      return;
-    }*/
+    
     addProduct();
   };
-
-  //const isAuthorized = user.role == ROLES.Admin || user.role == ROLES.Merchant;
 
   return (
     <div className='add-product'>

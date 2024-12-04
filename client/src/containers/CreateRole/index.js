@@ -1,17 +1,18 @@
-// src/pages/CreateRole.js
+/*
+
+Create role index
+
+*/
+
+
 import React, { useState } from 'react';
-import axios from 'axios';
-import '../../styles/_custom.scss';
 import { useDispatch } from 'react-redux';
-import { createRole } from './actions';
+import { addRole } from '../CreateRole/actions'; // Import your action
+import '../../../src/styles/_custom.scss';       // Add some CSS for styling toggle buttons
 
 const CreateRole = () => {
-  const dispatch = useDispatch();
-
-  // State variables for storing role name and permissions
   const [roleName, setRoleName] = useState('');
   const [permissions, setPermissions] = useState({
-    addresses: false,
     products: false,
     categories: false,
     brand: false,
@@ -19,88 +20,82 @@ const CreateRole = () => {
     merchant: false,
     orders: false,
     reviews: false,
-    wishlist: false,
   });
 
-  // Function to handle toggle button change
-  const handleToggleChange = (e) => {
-    const { name } = e.target;
-    setPermissions({
-      ...permissions,
-      [name]: !permissions[name], // Toggle the permission value
-    });
+  const dispatch = useDispatch();
+
+  const handleToggleChange = (permission) => {
+    setPermissions( (prevPermissions) => ( {
+      ...prevPermissions,
+      [permission]: !prevPermissions[permission],
+    }));
   };
 
-  // Function to handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    /*try {
-      const response = await axios.post('/api/roles', {
-        roleName,
-        permissions,
-      }); */
+  const handleSubmit = () => {
+    if (!roleName) {
+      alert('Role name is required');
+      return;
+    }
 
-      dispatch(createRole(roleName,permissions));
+    const selectedPermissions = Object.keys(permissions).filter (
+      (key) => permissions[key]
+    );
 
-      // reset form
-      setRoleName('');
-      setPermissions({
-        addresses: false,
-        products: false,
-        categories: false,
-        brand: false,
-        users: false,
-        merchant: false,
-        orders: false,
-        reviews: false,
-        wishlist: false,
-      });
+    const roleData = {
+      roleName,
+      permissions: selectedPermissions,
     };
-      /*catch (error) {
-        console.error('Error creating role:', error);
-        alert('Failed to create role');
-      }*/
+
+    dispatch(addRole(roleData)); // Dispatch the action
+
+    // Optional: Clear form after submission
+    setRoleName('');
+    setPermissions({
+      products: false,
+      categories: false,
+      brand: false,
+      users: false,
+      merchant: false,
+      orders: false,
+      reviews: false,
+    });
+
+  };
+
+  /*const handleSubmit = () => {
+    const selectedPermissions = Object.keys(permissions).filter(
+      (key) => permissions[key]
+    );*/
 
   return (
     <div>
-      <h2>Create Role</h2>
-      <form onSubmit={handleSubmit}>
-        {/* Input for role name */}
-        <div>
-          <label>Role Name:</label>
-          <input
-            type="text"
-            value={roleName}
-            onChange={(e) => setRoleName(e.target.value)}
-            required
-          />
-        </div>
-
-        {/* Toggle buttons for permissions */}
-        <div>
+      <h3>Create Role</h3>
+      <div>
+        <label>Role Name:</label>
+        <input
+          type="text"
+          id = "roleName"
+          value={roleName}
+          onChange={(e) => setRoleName(e.target.value)}
+        />
+      </div>
+      <div>
           <h3>Permissions:</h3>
           <div className="toggle-buttons-container">
-            {Object.keys(permissions).map((perm) => (
-              <div key={perm} className="toggle-button">
-                <label>{perm.charAt(0).toUpperCase() + perm.slice(1)}</label>
+            {Object.keys(permissions).map((permission) => (
+              <div key={permission} className="toggle-button">
+                <label>{permission.charAt(0).toUpperCase() + permission.slice(1)}</label>
                 <div
-                  className={`switch-checkbox-input ${
-                    permissions[perm] ? 'checked' : ''
-                  }`}
-                  onClick={() => handleToggleChange({ target: { name: perm } })}
+                  className={`toggle-switch ${permissions[permission] ? 'active' : ''}`}
+                  onClick={() => handleToggleChange(permission)}
                 >
-                  <span className="switch-label">
-                    <span className="switch-label-toggle"></span>
-                  </span>
+                  <div className='toggle-knob'></div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Submit button */}
-        <button type="submit">Add Role</button>
-      </form>
+      </div>
+      <button onClick={handleSubmit}>Add Role</button>
     </div>
   );
 };

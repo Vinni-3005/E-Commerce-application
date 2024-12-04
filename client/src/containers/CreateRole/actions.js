@@ -4,42 +4,28 @@ actions
 
 */
 
+//import axios from 'axios';
+
 import axios from 'axios';
-//import { API_URL } from '../../../src/constants/constant';
-export const createRole = (roleData) => async (dispatch) => {
+import { ADD_ROLE_SUCCESS, ADD_ROLE_FAILURE } from './constants';
+import { API_URL } from '../../constants/constant';
+
+export const addRole = (roleData) => async (dispatch) => {
   try {
-      const response = await fetch('http://localhost:3000/api/roles', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(roleData),
-      });
-
-      const data = await response.json();
-
-      if (response.status === 201) {
-          dispatch({
-              type: 'CREATE_ROLE_SUCCESS',
-              payload: data.role,
-          });
-          alert('Role created successfully');
-      } else {
-          alert(data.message); // Display error message from backend
-          dispatch({
-              type: 'CREATE_ROLE_FAIL',
-              payload: data.message,
-          });
-      }
+    const response = await axios.post(`${API_URL}/roles`, roleData);
+    console.log('Role added:' , response.data);
+    dispatch({
+      type: ADD_ROLE_SUCCESS,
+      payload: response.data,
+    });
   } catch (error) {
-      console.error('Error creating role:', error);
-      alert('Error creating role');
-      dispatch({
-          type: 'CREATE_ROLE_FAIL',
-          payload: error.message,
-      });
+    dispatch({
+      type: ADD_ROLE_FAILURE,
+      payload: error.response.data.message || 'An error occurred',
+    });
   }
 };
+
 
 
 

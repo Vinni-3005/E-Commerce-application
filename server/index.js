@@ -21,6 +21,16 @@ app.use(
   })
 );
 
+app.use ( (req, res, next) => {
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+})
+
+const corsOptions = {
+  origin: "http://localhost:3001",
+};
+
+app.use(cors(corsOptions));
 
 app.use(cors({
   origin: "http://localhost:3001", //allow request from frontend
@@ -42,7 +52,7 @@ app.use('/api', brandRoutes);         //importing brand routes
 const productRoutes = require('./routes/api/product');
 app.use('/api', productRoutes);          //impoting product api's
 
-const roleRoutes = require('./routes/api/role');
+const roleRoutes = require('./routes/api/roles');
 app.use('/api', roleRoutes);    //importing role routes
 
 
