@@ -44,7 +44,7 @@
     "react-share": "^4.4.0",
     "reactstrap": "^8.0.0",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
+    "redux-thunk": "^2.4.2",
     "sass": "^1.79.4",
     "sass-embedded": "^1.79.4",
     "simple-line-icons": "^2.4.1",

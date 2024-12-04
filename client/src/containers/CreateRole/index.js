@@ -1,10 +1,13 @@
 // src/pages/CreateRole.js
 import React, { useState } from 'react';
 import axios from 'axios';
-//import './CreateRole.scss'; // Import SCSS for styling
 import '../../styles/_custom.scss';
+import { useDispatch } from 'react-redux';
+import { createRole } from './actions';
 
 const CreateRole = () => {
+  const dispatch = useDispatch();
+
   // State variables for storing role name and permissions
   const [roleName, setRoleName] = useState('');
   const [permissions, setPermissions] = useState({
@@ -31,12 +34,15 @@ const CreateRole = () => {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
+    /*try {
       const response = await axios.post('/api/roles', {
         roleName,
         permissions,
-      });
-      alert('Role created successfully');
+      }); */
+
+      dispatch(createRole(roleName,permissions));
+
+      // reset form
       setRoleName('');
       setPermissions({
         addresses: false,
@@ -49,11 +55,11 @@ const CreateRole = () => {
         reviews: false,
         wishlist: false,
       });
-    } catch (error) {
-      console.error('Error creating role:', error);
-      alert('Failed to create role');
-    }
-  };
+    };
+      /*catch (error) {
+        console.error('Error creating role:', error);
+        alert('Failed to create role');
+      }*/
 
   return (
     <div>
