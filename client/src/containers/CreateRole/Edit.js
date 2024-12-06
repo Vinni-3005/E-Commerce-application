@@ -1,109 +1,85 @@
-/*
- *
- * Role Edit
- *
- 
+/*import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { editRole, fetchRoles } from './actions';
+import { useHistory } from 'react-router-dom';
 
-import React from 'react';
-import { connect } from 'react-redux';
-import { fetchRoleById, updateRole } from './actions';
+const EditRole = ({ roleId }) => {
+  const dispatch = useDispatch();
+  const navigate = useHistory();
 
-class EditRole extends React.PureComponent {
-  constructor(props) {
-    super(props);
+  const roles = useSelector((state) => state.roles) || [];
+  const roleToEdit = roles.find((role) => role._id === roleId);
 
-    this.state = {
-      roleName: '',
-      permissions: {}
-    };
-  }
+  const [roleName, setRoleName] = useState('');
+  const [permissions, setPermissions] = useState({
+    products: false,
+    categories: false,
+    brand: false,
+    users: false,
+    merchant: false,
+    orders: false,
+    reviews: false,
+  });
 
-  componentDidMount() {
-    const { id } = this.props.match.params;
-    this.props.fetchRoleById(id).then((data) => {
-      this.setState({
-        roleName: data.roleName,
-        permissions: data.permissions
+  useEffect(() => {
+    if (roleToEdit) {
+      setRoleName(roleToEdit.roleName);
+      const updatedPermissions = { ...permissions };
+      roleToEdit.permissions.forEach((permission) => {
+        updatedPermissions[permission] = true;
       });
-    });
-  }
+      setPermissions(updatedPermissions);
+    }
+  }, [roleToEdit]);
 
-  handleToggle = (perm) => {
-    this.setState((prevState) => ({
-      permissions: {
-        ...prevState.permissions,
-        [perm]: !prevState.permissions[perm]
-      }
-    }));
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { id } = this.props.match.params;
-    const { roleName, permissions } = this.state;
-
-    this.props.updateRole(id, { roleName, permissions }).then(() => {
-      this.props.history.push('/');
+  const handleToggleChange = (permission) => {
+    setPermissions({
+      ...permissions,
+      [permission]: !permissions[permission],
     });
   };
 
-  render() {
-    const { roleName, permissions } = this.state;
-
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <h1>Edit Role</h1>
-        <div>
-          <label htmlFor="roleName">Role Name: </label>
-          <input
-            type="text"
-            id="roleName"
-            value={roleName}
-            onChange={(e) => this.setState({ roleName: e.target.value })}
-            required
-          />
-        </div>
-
-        <div>
-          <h3>Permissions</h3>
-          {Object.keys(permissions).map((perm) => (
-            <div key={perm}>
-              <label style={{ marginRight: '10px' }}>{perm}</label>
-              <button
-                type="button"
-                onClick={() => this.handleToggle(perm)}
-                style={{
-                  padding: '5px 10px',
-                  backgroundColor: permissions[perm] ? 'green' : 'red',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '5px',
-                  cursor: 'pointer'
-                }}
-              >
-                {permissions[perm] ? 'Enabled' : 'Disabled'}
-              </button>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ marginTop: '20px' }}>
-          <button type="submit" style={{ marginRight: '10px' }}>
-            Save
-          </button>
-          <button type="button" onClick={() => this.props.history.push('/')}>
-            Cancel
-          </button>
-        </div>
-      </form>
+  const handleSave = () => {
+    const updatedPermissions = Object.keys(permissions).filter(
+      (key) => permissions[key]
     );
-  }
-}
 
-const mapDispatchToProps = {
-  fetchRoleById,
-  updateRole
+    const updatedRoleData = {
+      roleName,
+      permissions: updatedPermissions,
+    };
+
+    dispatch(editRole(roleId, updatedRoleData));
+    navigate('/'); // Redirect back to the main role page
+  };
+
+  return (
+    <div>
+      <h2>Edit Role</h2>
+      <input
+        type="text"
+        placeholder="Role Name"
+        value={roleName}
+        onChange={(e) => setRoleName(e.target.value)}
+      />
+      <div>
+        {Object.keys(permissions).map((permission) => (
+          <div key={permission}>
+            <label>
+              <input
+                type="checkbox"
+                checked={permissions[permission]}
+                onChange={() => handleToggleChange(permission)}
+              />
+              {permission.charAt(0).toUpperCase() + permission.slice(1)}
+            </label>
+          </div>
+        ))}
+      </div>
+      <button onClick={handleSave}>Save Changes</button>
+    </div>
+  );
 };
 
-export default connect(null, mapDispatchToProps)(EditRole);
+export default EditRole;
 */

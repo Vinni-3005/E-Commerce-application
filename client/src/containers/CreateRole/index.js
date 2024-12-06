@@ -4,6 +4,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addRole, fetchRoles, editRole, deleteRole } from './actions';
+///import EditRole from './Edit';
+import {useHistory} from 'react-router-dom';
 
 const CreateRole = () => {
   const [roleName, setRoleName] = useState('');
@@ -32,7 +34,7 @@ const CreateRole = () => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const selectedPermissions = Object.keys(permissions).filter(
       (key) => permissions[key]
     );
@@ -78,6 +80,13 @@ const CreateRole = () => {
     dispatch(deleteRole(roleId)); // Dispatch delete action
   };
 
+  const history = useHistory ();
+
+  const handleRedirect = () => {
+    history.push('/create-role');
+    dispatch(fetchRoles());
+  }
+
   return (
     <div className='create-role-container'>
       <h3>Create Role</h3>
@@ -111,7 +120,7 @@ const CreateRole = () => {
         {editingRole ? 'Update Role' : 'Add Role'}
       </button>
 
-      <h3> View Existing Roles</h3>
+      <button onClick={handleRedirect}>View Existing roles</button>
       <ul>
         {roles.map((role) => (
           <li key={role._id}>
