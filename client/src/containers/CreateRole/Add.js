@@ -1,51 +1,78 @@
 /*
-
-Add role
-
-
-
+ *
+ * Add
+ *
+ 
 
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import actions from '../../actions';
-import AddRole from '../../components/Manager/AddRole';
+//import AddRoleForm from '../../components/Manager/AddRole';
 import SubPage from '../../components/Manager/SubPage';
 
-class Add extends React.PureComponent {
-    render () {
-        const {
-            history,
-            roleFormData,
-            formErrors,
-            roleChange,
-            addRole,
-        } = this.props;
+class AddRole extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      permissions: {
+        product: false,
+        categories: false,
+        brands: false,
+        reviews: false,
+      },
+    };
+  }
 
-        return (
-            <SubPage
-                title='Create Role'
-                actionTitle = 'Cancel'
-                handleAction = { () => history.goBack()}
-            >
-                <AddRole
-                    roleFormData={roleFormData}
-                    formErrors={formErrors}
-                    roleChange={roleChange}
-                    addRole= {addRole}
-                />
-            </SubPage>
-        );
-    } 
+  handleToggle = (perm) => {
+    this.setState((prevState) => ({
+      permissions: {
+        ...prevState.permissions,
+        [perm]: !prevState.permissions[perm],
+      },
+    }));
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { addRole, history, roleFormData } = this.props;
+    const { permissions } = this.state;
+
+    const newRole = {
+      ...roleFormData,
+      permissions,
+    };
+
+    addRole(newRole);
+    history.push('/');
+  };
+
+  render() {
+    const { history, roleFormData, formErrors, roleChange } = this.props;
+    const { permissions } = this.state;
+
+    return (
+      <SubPage
+        title="Create Role"
+        actionTitle="Cancel"
+        handleAction={() => history.goBack()}
+      >
+        <AddRoleForm
+          roleFormData={roleFormData}
+          formErrors={formErrors}
+          roleChange={roleChange}
+          handleSubmit={this.handleSubmit}
+          permissions={permissions}
+          handleToggle={this.handleToggle}
+        />
+      </SubPage>
+    );
+  }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        roleFormData : state.roles.roleFormData,
-        formErrors : state.roles.formErrors
-    };
-};
+const mapStateToProps = (state) => ({
+  roleFormData: state.roles.roleFormData,
+  formErrors: state.roles.formErrors,
+});
 
-export default connect(mapStateToProps, actions)(Add)
-
-
+export default connect(mapStateToProps, actions)(AddRole);
 */

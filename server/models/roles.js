@@ -10,6 +10,7 @@ const roleSchema = new Schema({
   },
   permissions: {
     type: [String],
+    default : [],
     required: true,
   },
 });

@@ -4,8 +4,8 @@ Constants
 
 */
 
-
-export const ADD_ROLE_SUCCESS = 'ADD_ROLE_SUCCESS';
-export const ADD_ROLE_FAILURE = 'ADD_ROLE_FAILURE';
-
+export const ADD_ROLE = 'ADD_ROLE';
+export const EDIT_ROLE = 'EDIT_ROLE';
+export const DELETE_ROLE = 'DELETE_ROLE';
+export const FETCH_ROLES = 'FETCH_ROLES';
 
