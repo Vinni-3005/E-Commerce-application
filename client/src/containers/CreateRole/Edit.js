@@ -1,13 +1,15 @@
-/*import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editRole, fetchRoles } from './actions';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 const EditRole = ({ roleId }) => {
+  const {roleId} = useParams();
   const dispatch = useDispatch();
-  const navigate = useHistory();
+  const history = useHistory();
 
   const roles = useSelector((state) => state.roles) || [];
+  console.log(roles);
   const roleToEdit = roles.find((role) => role._id === roleId);
 
   const [roleName, setRoleName] = useState('');
@@ -20,6 +22,12 @@ const EditRole = ({ roleId }) => {
     orders: false,
     reviews: false,
   });
+
+  useEffect ( () => {
+    if (!roles.length) {
+      dispatch(fetchRoles());
+    }
+  }, [dispatch, roles.length]);
 
   useEffect(() => {
     if (roleToEdit) {
@@ -50,8 +58,12 @@ const EditRole = ({ roleId }) => {
     };
 
     dispatch(editRole(roleId, updatedRoleData));
-    navigate('/'); // Redirect back to the main role page
+    history.push('/create-role'); // Redirect back to the main role page
   };
+
+  if (!roleToEdit) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div>
@@ -82,4 +94,3 @@ const EditRole = ({ roleId }) => {
 };
 
 export default EditRole;
-*/

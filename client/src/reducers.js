@@ -63,7 +63,7 @@ const createReducer = history =>
     order: orderReducer,
     review: reviewReducer,
     wishlist: wishListReducer,
-    createrole : roleReducer
+    roles : roleReducer
   });
 
 export default createReducer;

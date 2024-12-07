@@ -16,7 +16,7 @@ const roleReducer = (state = initialState, action) => {
     case FETCH_ROLES:
       return {
         ...state,
-        roles: action.payload,
+        roles: Array.isArray(action.payload) ? action.payload : [],
       };
     case ADD_ROLE:
       return {

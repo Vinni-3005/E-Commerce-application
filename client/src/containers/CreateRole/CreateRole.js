@@ -21,7 +21,10 @@ const CreateRole = () => {
   const [editingRole, setEditingRole] = useState(null); // For editing state
 
   const dispatch = useDispatch();
-  const roles = useSelector((state) => state.roles) || [];
+  const roles = useSelector((state) => state.roles || []);
+
+
+  //const rolesList = Array.isArray(roles) ? roles : [];
 
   useEffect(() => {
     dispatch(fetchRoles()); // Fetch roles on initial load
@@ -66,7 +69,7 @@ const CreateRole = () => {
     });
   };
 
-  const handleEdit = (role) => {
+ /* const handleEdit = (role) => {
     setRoleName(role.roleName);
     const updatedPermissions = { ...permissions };
     role.permissions.forEach((permission) => {
@@ -74,7 +77,8 @@ const CreateRole = () => {
     });
     setPermissions(updatedPermissions);
     setEditingRole(role);
-  };
+    //history.push(`/edit-role/${role._id}`);
+  };*/
 
   const handleDelete = (roleId) => {
     dispatch(deleteRole(roleId)); // Dispatch delete action
@@ -86,6 +90,12 @@ const CreateRole = () => {
     history.push('/create-role');
     dispatch(fetchRoles());
   }
+
+  const handleEditRedirect = (roleId) => {
+    history.push(`/edit-role/${roleId}`);
+  }
+
+
 
   return (
     <div className='create-role-container'>
@@ -126,7 +136,7 @@ const CreateRole = () => {
           <li key={role._id}>
             <span>{role.roleName}</span>
             <span>Permissions: {role.permissions.join(', ')}</span>
-            <button onClick={() => handleEdit(role)}>Edit</button>
+            <button onClick={() => handleEditRedirect(role._id)}>Edit</button>
             <button onClick={() => handleDelete(role._id)}>Delete</button>
           </li>
         ))}
