@@ -34,6 +34,7 @@ import orderReducer from './containers/Order/reducer';
 import reviewReducer from './containers/Review/reducer';
 import wishListReducer from './containers/WishList/reducer';
 import roleReducer from './containers/CreateRole/reducer';
+import assignRoleReducer from './containers/AssignRoles/reducer';
 
 const createReducer = history =>
   combineReducers({
@@ -63,7 +64,8 @@ const createReducer = history =>
     order: orderReducer,
     review: reviewReducer,
     wishlist: wishListReducer,
-    roles : roleReducer
+    createroles : roleReducer,
+    assignroles : assignRoleReducer
   });
 
 export default createReducer;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editRole, fetchRoles } from './actions';
 import { useHistory, useParams } from 'react-router-dom';
 
-const EditRole = ({ roleId }) => {
+const EditRole = () => {
   const {roleId} = useParams();
   const dispatch = useDispatch();
   const history = useHistory();

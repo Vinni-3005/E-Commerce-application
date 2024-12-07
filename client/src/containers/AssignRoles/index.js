@@ -7,9 +7,9 @@ const AssignRole = () => {
   const [selectedUser, setSelectedUser] = useState('');
   const [selectedRole, setSelectedRole] = useState('');
   const dispatch = useDispatch();
-  const users = useSelector(state => state.users);
-  const roles = useSelector(state => state.roles);
-  const assignmentStatus = useSelector(state => state.assignmentStatus);
+  const users = useSelector((state) => state.users || []);
+  const roles = useSelector((state) => state.roles);
+  const assignmentStatus = useSelector((state) => state.assignmentStatus);
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -24,6 +24,38 @@ const AssignRole = () => {
     }
   };
 
+  // Function to render users
+  const renderUsers = () => {
+    const userOptions = [];
+    if (Array.isArray(users) && users.length > 0) {
+      for (let i = 0; i < users.length; i++) {
+        userOptions.push(
+          <option key={users[i]._id} value={users[i]._id}>
+            {users[i].username}
+          </option>
+        );
+      }
+    } else {
+      userOptions.push(<option key="no-users">No users found</option>);
+    }
+    return userOptions;
+  };
+
+  // Function to render roles
+  const renderRoles = () => {
+    const roleOptions = [];
+    if (Array.isArray(roles) && roles.length > 0) {
+      for (let i = 0; i < roles.length; i++) {
+        roleOptions.push(
+          <option key={roles[i]._id} value={roles[i]._id}>
+            {roles[i].roleName}
+          </option>
+        );
+      }
+    }
+    return roleOptions;
+  };
+
   return (
     <div>
       <h2>Assign Role</h2>
@@ -32,9 +64,7 @@ const AssignRole = () => {
         <label>User:</label>
         <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
           <option value="">--Select User--</option>
-          {users.map((user) => (
-            <option key={user._id} value={user._id}>{user.username}</option>
-          ))}
+          {renderUsers()}
         </select>
       </div>
 
@@ -42,9 +72,7 @@ const AssignRole = () => {
         <label>Role:</label>
         <select value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)}>
           <option value="">--Select Role--</option>
-          {roles.map((role) => (
-            <option key={role._id} value={role._id}>{role.roleName}</option>
-          ))}
+          {renderRoles()}
         </select>
       </div>
 
