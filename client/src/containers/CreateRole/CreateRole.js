@@ -132,14 +132,17 @@ const CreateRole = () => {
 
       <button onClick={handleRedirect}>View Existing roles</button>
       <ul>
-        {roles.map((role) => (
+        {roles.length > 0 ? (roles.map((role) => (
           <li key={role._id}>
             <span>{role.roleName}</span>
             <span>Permissions: {role.permissions.join(', ')}</span>
             <button onClick={() => handleEditRedirect(role._id)}>Edit</button>
             <button onClick={() => handleDelete(role._id)}>Delete</button>
           </li>
-        ))}
+        ))
+      ) : (
+        <p></p>
+      )}
       </ul>
     </div>
   );

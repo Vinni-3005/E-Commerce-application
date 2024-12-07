@@ -16,11 +16,10 @@ import { API_URL } from '../../constants/constant';
 export const fetchRoles = () => async (dispatch) => {
   try {
     const response = await axios.get(`${API_URL}/roles`);
-    const data = await response.json();
     console.log('Roles fetched:', response.data);
     dispatch({
       type: FETCH_ROLES,
-      payload: data,
+      payload: response.data,
     });
   } catch (error) {
     console.error('Error fetching roles:', error);
