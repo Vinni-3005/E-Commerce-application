@@ -5,56 +5,48 @@ const User = require('../../models/user');   // Assuming User model exists
 const Role = require('../../models/roles');   // Assuming Role model exists
 const AssignRole = require('../../models/assignroles');  // The AssignRole model
 
-// Route to fetch all users
-router.get('/users', async (req, res) => {
-  try {
-    const users = await User.find();  // Fetch all users
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching users' });
-  }
-});
-
-// Route to fetch all roles
-router.get('/roles', async (req, res) => {
-  try {
-    const roles = await Role.find();  // Fetch all roles
-    res.json(roles);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching roles' });
-  }
-});
 
 // Route to assign role to a user
-router.post('/', async (req, res) => {
-  const { userId, roleId } = req.body;
+
+router.post('/assignroles', async (req, res) => {
+  console.log('Received request body:', req.body);
+  const {userId, roleId} = req.body;
+  if (!userId || !roleId) {
+    return res.status(400).json({message:'userId and roleID are required'})
+  }
 
   try {
-    // Check if user and role exist
-    const user = await User.findById(userId);
+    const user = await User.findOne({username: userId});
+    if (!user) {
+      return res.status(404).json({message:'User not found'});
+    }
+
     const role = await Role.findById(roleId);
-
-    if (!user || !role) {
-      return res.status(404).json({ message: 'User or Role not found' });
+    if ( !role) {
+      return res.status(404).json({message:'Role not found'});
     }
 
-    // Check if the role is already assigned to the user
-    const existingAssignment = await AssignRole.findOne({ userId, roleId });
-    if (existingAssignment) {
-      return res.status(400).json({ message: 'Role is already assigned to this user' });
-    }
-
-    // Create and save the role assignment
     const assignRole = new AssignRole({
-      userId,
-      roleId
+      userId: user._id,
+      roleId: role._id,
     });
+    await assignRole.save();  // Save the assignment record
 
-    await assignRole.save();
-    res.json({ message: 'Role assigned successfully', assignRole });
+    // Now update the User's roles array
+    user.roles.push(role._id);
+    await user.save();
+
+    return res.status(200).json({
+      message: 'Role assigned successfully',
+      userId: user._id,
+      roleId: role._id,
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Error assigning role' });
+    console.error('Error assigning role:', error);
+    return res.status(500).json({message:'failed to assign role', error:error.message});
   }
 });
 
 module.exports = router;
+
+

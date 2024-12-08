@@ -56,8 +56,8 @@ app.use('/api', productRoutes);          //impoting product api's
 const roleRoutes = require('./routes/api/roles');
 app.use('/api', roleRoutes);    //importing role routes
 
-const assignRoleRoutes = require('./routes/api/assignroles');
-app.use('/api', assignRoleRoutes);
+const assignRolesRoute = require('./routes/api/assignroles');
+app.use('/api', assignRolesRoute);
 
 
 
