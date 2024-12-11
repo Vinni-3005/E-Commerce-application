@@ -336,7 +336,7 @@ router.get(
     
     const token = jwt.sign(payload, keys.jwt.secret, { noTimestamp : true });
     const jwtToken = `Bearer ${token}`;
-    res.redirect(`${keys.app.clientURL}/auth/success`);
+    res.redirect(`${API_URL}/auth/success`);
   }
 );
 
