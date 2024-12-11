@@ -7,6 +7,7 @@ import { assignRole } from './actions'; // Import necessary actions for roles an
 const AssignRole = () => {
   const [selectedUser, setSelectedUser] = useState('');
   const [selectedRole, setSelectedRole] = useState('');
+  const [message, setMessage] = useState(''); // State for the message bo
   const dispatch = useDispatch();
   const assignmentStatus = useSelector((state) => state.assignmentStatus);
   //const [assignmentStatus, setAssignmentStatus] = useState(null);
@@ -22,8 +23,22 @@ const AssignRole = () => {
     dispatch(fetchRoles()); // Assuming this fetches roles for the dropdown
   }, [dispatch]);
 
+  const  renderUserOptions = () => {
+    if (users.length === 0) {
+      return <option key="no users" disabled>No users available</option>
+    }
+
+    return users.map((user) => {
+      const fullName= `${user.firstName || 'Unnamed'} ${user.lastName || ''}`.trim();
+      return (
+        <option key={user._id} value={user.username || fullName}>
+          {fullName}
+        </option>
+      );
+    });
+  };
   // Generate dropdown options for users
-  const renderUserOptions = () => {
+  /*const renderUserOptions = () => {
     let options = [];
     if (users.length > 0) {
       for (let i = 0; i < users.length; i++) {
@@ -38,10 +53,10 @@ const AssignRole = () => {
       options.push(<option key="no-users" disabled>No users available</option>);
     }
     return options;
-  };
+  };*/
 
   // Generate dropdown options for roles
-  const renderRoleOptions = () => {
+  /*const renderRoleOptions = () => {
     console.log("Roles Array:", roles);
     if (!Array.isArray(roles) || roles.length === 0) {
       return <option key="no-roles" disabled>No roles available</option>;
@@ -52,6 +67,20 @@ const AssignRole = () => {
         {role.roleName || 'Unnamed Role'}
       </option>
     ));
+  };*/
+
+  const renderRoleOptions = () => {
+    return roles.length > 0 ? (
+      roles.map((role) => (
+        <option key={role.roleName} value={role.roleName}>
+          {role.roleName || 'Unnamed Role'}
+        </option>
+      ))
+    ) : (
+      <option key="no-roles" disabled>
+        No roles available
+      </option>
+    );
   };
 
   // Handle form submission
@@ -60,7 +89,9 @@ const AssignRole = () => {
       alert('Please select both a user and a role.');
       return;
     }
-    dispatch(assignRole(selectedUser, selectedRole)); // Dispatch the assignRole action
+    dispatch(assignRole(selectedUser, selectedRole)).then( () => {
+      alert(`Role '${selectedRole}' assigned successfully to '${selectedUser}'`);
+    }); // Dispatch the assignRole action
   };
 
   return (

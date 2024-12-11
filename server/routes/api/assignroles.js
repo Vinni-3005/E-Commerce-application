@@ -10,36 +10,31 @@ const AssignRole = require('../../models/assignroles');  // The AssignRole model
 
 router.post('/assignroles', async (req, res) => {
   console.log('Received request body:', req.body);
-  const {userId, roleId} = req.body;
-  if (!userId || !roleId) {
+  const {username, roleName} = req.body;
+  if (!username || !roleName) {
     return res.status(400).json({message:'userId and roleID are required'})
   }
 
   try {
-    const user = await User.findOne({username: userId});
+    const user = await User.findOneAndUpdate(
+      {username},
+      {role:roleName},
+      {new:true}
+    );
     if (!user) {
       return res.status(404).json({message:'User not found'});
     }
 
-    const role = await Role.findById(roleId);
+    console.log('Updated User:', user);
+
+    /* role = await Role.findOneAndUpdate({roleName});
     if ( !role) {
       return res.status(404).json({message:'Role not found'});
-    }
-
-    const assignRole = new AssignRole({
-      userId: user._id,
-      roleId: role._id,
-    });
-    await assignRole.save();  // Save the assignment record
-
-    // Now update the User's roles array
-    user.roles.push(role._id);
-    await user.save();
+    }*/
 
     return res.status(200).json({
       message: 'Role assigned successfully',
-      userId: user._id,
-      roleId: role._id,
+      updatedUser: { username: user.username, role: user.role },
     });
   } catch (error) {
     console.error('Error assigning role:', error);

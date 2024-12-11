@@ -11,8 +11,8 @@ export const assignRole = (selectedUser, selectedRole) => async (dispatch) => {
 
   try {
     const payload = {
-      userId : selectedUser,
-      roleId : selectedRole,
+      username : selectedUser,
+      roleName: selectedRole,
     };
     console.log('Payload being sent:', payload);
     const response = await axios.post(`${API_URL}/assignroles`, payload );

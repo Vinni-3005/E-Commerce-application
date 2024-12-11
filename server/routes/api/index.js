@@ -14,7 +14,7 @@ const orderRoutes = require('./order');
 const reviewRoutes = require('./review');
 const wishlistRoutes = require('./wishlist');
 const roleRoutes = require('./roles');
-const assignRolesRoute = require('./assignroles');
+const assignRolesRoutes = require('./assignroles');
 
 // auth routes
 router.use('/auth', authRoutes);
@@ -59,6 +59,6 @@ router.use('/wishlist', wishlistRoutes);
 router.use('/roles', roleRoutes);
 
 //assign roles routes
-router.use('/assignroles', assignRolesRoute);
+router.use('/assignroles', assignRolesRoutes);
 
 module.exports = router;
