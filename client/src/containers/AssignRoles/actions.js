@@ -4,6 +4,7 @@ import { API_URL } from '../../constants/constant';
 import axios from 'axios';
 //import {  ASSIGN_ROLE, ASSIGN_ROLE_ERROR } from './constants';
 import { ASSIGN_ROLE,ASSIGN_ROLE_ERROR } from './constants';
+import { fetchUsers } from '../Users/actions';
 
 
 // Action to assign role to a user

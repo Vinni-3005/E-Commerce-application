@@ -93,7 +93,7 @@ class Application extends React.PureComponent {
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Signup} />
                 <Route
-                  path='/merchant-signup/:token'
+                  path='/merchant-signup'
                   component={MerchantSignup}
                 />
                 <Route path='/forgot-password' component={ForgotPassword} />

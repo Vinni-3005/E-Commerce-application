@@ -16,6 +16,9 @@ const MerchantSchema = new Schema({
   phoneNumber: {
     type: String
   },
+  password: {
+    type: String
+  },
   brandName: {
     type: String
   },

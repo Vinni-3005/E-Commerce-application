@@ -201,7 +201,7 @@ router.put('/reject/:id', auth, async (req, res) => {
   }
 });
 
-router.post('/signup/:token', async (req, res) => {
+router.post('/signup/', async (req, res) => {
   try {
     const { email, firstName, lastName, password } = req.body;
 

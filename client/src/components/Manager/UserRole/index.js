@@ -12,18 +12,26 @@ import Badge from '../../Common/Badge';
 const UserRole = props => {
   const { className, user } = props;
 
+  const normalizedRole = user.role.trim().toUpperCase();
+
+
+
   return (
     <>
-      {user.role === ROLES.Admin ? (
+      { normalizedRole === ROLES.Admin ? (
         <Badge variant='primary' className={className}>
           Admin
         </Badge>
-      ) : user.role === ROLES.Merchant ? (
+      ) : normalizedRole === ROLES.Distributor ? (
         <Badge variant='dark' className={className}>
-          Merchant
+          Distributor
+        </Badge>
+      ) : normalizedRole === ROLES.Manufacturer ? (
+        <Badge variant='success'className={className}>
+          Manufacturer
         </Badge>
       ) : (
-        <Badge className={className}>Member</Badge>
+        <Badge className={className}>Customer</Badge>
       )}
     </>
   );

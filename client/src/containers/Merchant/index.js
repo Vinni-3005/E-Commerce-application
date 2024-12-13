@@ -23,9 +23,9 @@ class Merchant extends React.PureComponent {
       <div className='merchant-dashboard'>
         <Switch>
           <Route exact path='/dashboard/merchant' component={List} />
-          {user.role === ROLES.Admin && (
+          {/*{user.role === ROLES.Admin} && (*/}
             <Route exact path='/dashboard/merchant/add' component={Add} />
-          )}
+          {/*})}*/}
           <Route path='*' component={Page404} />
         </Switch>
       </div>

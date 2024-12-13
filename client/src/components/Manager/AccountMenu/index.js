@@ -13,6 +13,7 @@ import Button from '../../Common/Button';
 
 const AccountMenu = props => {
   const { user, isMenuOpen, links, toggleMenu } = props;
+  console.log('Links passed to AccountMenu:', links);
 
   const getAllowedProvider = link => {
     if (!link.provider) return true;
@@ -58,5 +59,14 @@ const AccountMenu = props => {
     </div>
   );
 };
+
+
+
+
+
+AccountMenu.defaultProps = {
+  links: [],
+};
+
 
 export default AccountMenu;

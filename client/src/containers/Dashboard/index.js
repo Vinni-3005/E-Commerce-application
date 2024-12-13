@@ -29,29 +29,39 @@ class Dashboard extends React.PureComponent {
     if (isDisabledMerchantAccount(user))
       return <DisabledMerchantAccount user={user} />;
 
+    
+    const normalizedRole = user.role.trim().toUpperCase();
+
     return (
-      <>
+      <> 
         {isLoading ? (
           <LoadingIndicator inline />
-        ) : user.role === ROLES.Admin ? (
+        ) : normalizedRole === ROLES.Admin ? (
           <Admin
             user={user}
             isMenuOpen={isMenuOpen}
             links={dashboardLinks[ROLES.Admin]}
             toggleMenu={toggleDashboardMenu}
           />
-        ) : user.role === ROLES.Merchant && user.merchant ? (
-          <Merchant
+        ) : normalizedRole === ROLES.Distributor ? (
+          <Distributor
             user={user}
             isMenuOpen={isMenuOpen}
-            links={dashboardLinks[ROLES.Merchant]}
+            links={dashboardLinks[ROLES.Distributor]}
+            toggleMenu={toggleDashboardMenu}
+          />
+        ) :  normalizedRole === ROLES.Manufacturer ? (
+          <Manufacturer
+            user={user}
+            isMenuOpen={isMenuOpen}
+            links={dashboardLinks[ROLES.Manufacturer]}
             toggleMenu={toggleDashboardMenu}
           />
         ) : (
           <Customer
             user={user}
             isMenuOpen={isMenuOpen}
-            links={dashboardLinks[ROLES.Member]}
+            links={dashboardLinks[ROLES.Customer]}
             toggleMenu={toggleDashboardMenu}
           />
         )}

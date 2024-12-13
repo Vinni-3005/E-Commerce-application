@@ -242,7 +242,7 @@ export const merchantSignUp = token => {
         return dispatch({ type: SET_SIGNUP_FORM_ERRORS, payload: errors });
       }
 
-      await axios.post(`${API_URL}/merchant/signup/${token}`, merchant);
+      await axios.post(`${API_URL}/merchant/signup`, merchant);
 
       const successfulOptions = {
         title: `You have signed up successfully! Please sign in with the email and password. Thank you!`,

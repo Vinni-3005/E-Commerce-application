@@ -45,8 +45,8 @@ const UserSchema = new Schema({
   },
   role: {
     type: String,
-    default: ROLES.Member,
-    enum: [ROLES.Admin, ROLES.Member, ROLES.Merchant]
+    //default: ROLES.Member,
+    enum: [ROLES.Admin, ROLES.Member, ROLES.Merchant,'Customer','Admin','Distributor','Manufacturer'],
   },
   
   resetPasswordToken: { type: String },
@@ -58,4 +58,25 @@ const UserSchema = new Schema({
   }
 });
 
+
+// Static method to assign a new role
+UserSchema.statics.assignRole = async function (username, newRole) {
+  // Ensure the newRole is valid
+  if (!Object.values(ROLES).includes(newRole)) {
+    throw new Error('Invalid role specified.');
+  }
+
+  // Update the user's role
+  const updatedUser = await this.findOneAndUpdate(
+    { username }, // Find user by username
+    { role: newRole, updated: new Date() }, // Update the role and updated timestamp
+    { new: true } // Return the updated user document
+  );
+
+  if (!updatedUser) {
+    throw new Error('User not found or update failed.');
+  }
+
+  return updatedUser;
+};
 module.exports = Mongoose.model('User', UserSchema);

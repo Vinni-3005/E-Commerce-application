@@ -25,9 +25,10 @@ const REVIEW_STATUS = {
   Waiting_Approval: 'Waiting Approval'
 };
 const ROLES = {
-  Admin: 'ROLE ADMIN',
-  Member: 'ROLE MEMBER',
-  Merchant: 'ROLE MERCHANT'
+  Admin: 'ADMIN',
+  Customer: 'CUSTOMER',
+  Distributor: 'DISTRIBUTOR',
+  Manufacturer: 'MANUFACTURER',
 };
 /*const SOCKET_URL = window.location.host.indexOf('localhost') >= 0
     ? 'http://localhost:3001/api'
@@ -47,7 +48,6 @@ module.exports = {
   REVIEW_STATUS,
   ROLES,
   SOCKET_URL
-
 };
 
 //export const API_URL = process.env.REACT_APP_API_URL;

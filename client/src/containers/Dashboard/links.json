@@ -1,5 +1,5 @@
 {
-  "ROLE ADMIN": [
+  "ADMIN": [
     { "to": "", "name": "Account Details", "prefix": "/dashboard" },
     {
       "to": "/security",
@@ -20,7 +20,7 @@
     { "to": "/CreateRole", "name": "Create Roles", "prefix": "/dashboard"},
     { "to": "/assignrole", "name": "Assign roles", "prefix": "/dashboard"}
   ],
-  "ROLE MERCHANT": [
+  "ROLE DISTRIBUTOR": [
     { "to": "", "name": "Account Details", "prefix": "/dashboard" },
     {
       "to": "/security",
@@ -29,23 +29,33 @@
       "provider": ["Email"]
     },
     { "to": "/address", "name": "Address", "prefix": "/dashboard" },
-    { "to": "/brand", "name": "Brand", "prefix": "/dashboard" },
     { "to": "/product", "name": "Products", "prefix": "/dashboard" },
+    { "to": "/category", "name":"Categories", "prefix":"/dashboard"},
+    { "to": "/orders", "name": "Orders", "prefix": "/dashboard" },
+    { "to": "/review", "name": "Reviews", "prefix": "/dashboard" },
+    { "to": "/support", "name": "Support" }
+  ],
+  "ROLE CUSTOMER": [
+    { "to": "", "name": "Account Details", "prefix": "/dashboard" },
+    {
+      "to": "/security",
+      "name": "Account Security",
+      "prefix": "/dashboard",
+      "provider": ["Email"]
+    },
+    { "to": "/address", "name": "Address", "prefix": "/dashboard" },
     { "to": "/orders", "name": "Orders", "prefix": "/dashboard" },
     { "to": "/wishlist", "name": "WishList", "prefix": "/dashboard" },
     { "to": "/support", "name": "Support" }
   ],
-  "ROLE MEMBER": [
-    { "to": "", "name": "Account Details", "prefix": "/dashboard" },
-    {
-      "to": "/security",
-      "name": "Account Security",
-      "prefix": "/dashboard",
-      "provider": ["Email"]
-    },
+  "ROLE MANUFACTURER" : [
+    { "to": "", "name":"Account Details", "prefix":"/dashboard"},
+    {"to":"/security", "name":"Account Security", "prefix":"/dashboard", "provider":["Email"]},
     { "to": "/address", "name": "Address", "prefix": "/dashboard" },
+    { "to": "/brand", "name": "Brand", "prefix": "/dashboard" },
     { "to": "/orders", "name": "Orders", "prefix": "/dashboard" },
     { "to": "/wishlist", "name": "WishList", "prefix": "/dashboard" },
     { "to": "/support", "name": "Support" }
+
   ]
 }

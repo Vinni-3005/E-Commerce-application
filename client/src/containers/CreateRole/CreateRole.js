@@ -17,6 +17,9 @@ const CreateRole = () => {
     merchant: false,
     orders: false,
     reviews: false,
+    wishlist: false,
+    createroles: false,
+    assignroles: false,
   });
   const [editingRole, setEditingRole] = useState(null); // For editing state
 
@@ -66,6 +69,9 @@ const CreateRole = () => {
       merchant: false,
       orders: false,
       reviews: false,
+      wishlist: false,
+      createroles: false,
+      assignroles: false,
     });
   };
 
