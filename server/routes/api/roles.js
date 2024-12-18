@@ -85,4 +85,21 @@ router.get('/roles/:roleName', async (req, res) => {
   }
 });
 
+router.get('/permissions', async(req,res) => {
+  const {roleName} = req.query;
+
+  try {
+    const role = await Role.findOne({roleName});
+
+    if (!role) {
+      return res.status(404).json({msg:'Role not found'});
+    }
+
+    res.json({permissions:role.permissions});
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

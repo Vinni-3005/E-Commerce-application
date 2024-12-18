@@ -66,3 +66,17 @@ export const deleteRole = (roleId) => async (dispatch) => {
 };
 
 
+export const fetchRolePermissions = (role) => async (dispatch) => {
+  try {
+    const response = await axios.get(`${API_URL}/roles/${role}`);
+
+    dispatch ( {
+      type: FETCH_ROLE_PERMISSIONS,
+      payload:response.data.permissions,
+    });
+  } catch (error) {
+    console.error('Error fetching role permissions:', error);
+  }
+};
+
+
