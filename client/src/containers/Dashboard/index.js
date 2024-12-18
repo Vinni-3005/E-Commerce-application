@@ -30,7 +30,7 @@ class Dashboard extends React.PureComponent {
       return <DisabledMerchantAccount user={user} />;
 
     
-    const normalizedRole = user.role.trim().toUpperCase();
+    const normalizedRole = user?.role ? user.role.trim().toUpperCase() : null;
 
     return (
       <> 

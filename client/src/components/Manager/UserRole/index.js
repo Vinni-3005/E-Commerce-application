@@ -12,7 +12,7 @@ import Badge from '../../Common/Badge';
 const UserRole = props => {
   const { className, user } = props;
 
-  const normalizedRole = user.role.trim().toUpperCase();
+  const normalizedRole = user?.role ? user.role.trim().toUpperCase() : null;
 
 
 
@@ -30,7 +30,7 @@ const UserRole = props => {
         <Badge variant='success'className={className}>
           Manufacturer
         </Badge>
-      ) : (
+      ) :  (
         <Badge className={className}>Customer</Badge>
       )}
     </>

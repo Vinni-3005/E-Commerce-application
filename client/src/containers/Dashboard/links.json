@@ -20,7 +20,7 @@
     { "to": "/CreateRole", "name": "Create Roles", "prefix": "/dashboard"},
     { "to": "/assignrole", "name": "Assign roles", "prefix": "/dashboard"}
   ],
-  "ROLE DISTRIBUTOR": [
+  "DISTRIBUTOR": [
     { "to": "", "name": "Account Details", "prefix": "/dashboard" },
     {
       "to": "/security",
@@ -35,7 +35,7 @@
     { "to": "/review", "name": "Reviews", "prefix": "/dashboard" },
     { "to": "/support", "name": "Support" }
   ],
-  "ROLE CUSTOMER": [
+  "CUSTOMER": [
     { "to": "", "name": "Account Details", "prefix": "/dashboard" },
     {
       "to": "/security",
@@ -48,7 +48,7 @@
     { "to": "/wishlist", "name": "WishList", "prefix": "/dashboard" },
     { "to": "/support", "name": "Support" }
   ],
-  "ROLE MANUFACTURER" : [
+  "MANUFACTURER" : [
     { "to": "", "name":"Account Details", "prefix":"/dashboard"},
     {"to":"/security", "name":"Account Security", "prefix":"/dashboard", "provider":["Email"]},
     { "to": "/address", "name": "Address", "prefix": "/dashboard" },
