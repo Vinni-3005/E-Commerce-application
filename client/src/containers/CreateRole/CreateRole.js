@@ -3,13 +3,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRole, fetchRoles, editRole, deleteRole } from './actions';
+import { addRole, fetchRolesData, editRole, deleteRole } from './actions';
 ///import EditRole from './Edit';
 import {useHistory} from 'react-router-dom';
 
 const CreateRole = () => {
   const [roleName, setRoleName] = useState('');
   const [permissions, setPermissions] = useState({
+    accountsecurity:false,
+    address:false,
     products: false,
     categories: false,
     brand: false,
@@ -62,6 +64,8 @@ const CreateRole = () => {
     // Clear form fields after submit
     setRoleName('');
     setPermissions({
+      accountsecurity:false,
+      address:false,
       products: false,
       categories: false,
       brand: false,
@@ -74,17 +78,6 @@ const CreateRole = () => {
       assignroles: false,
     });
   };
-
- /* const handleEdit = (role) => {
-    setRoleName(role.roleName);
-    const updatedPermissions = { ...permissions };
-    role.permissions.forEach((permission) => {
-      updatedPermissions[permission] = true;
-    });
-    setPermissions(updatedPermissions);
-    setEditingRole(role);
-    //history.push(`/edit-role/${role._id}`);
-  };*/
 
   const handleDelete = (roleId) => {
     dispatch(deleteRole(roleId)); // Dispatch delete action

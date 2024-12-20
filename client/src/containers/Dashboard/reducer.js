@@ -4,10 +4,11 @@
  *
  */
 
-import { TOGGLE_DASHBOARD_MENU } from './constants';
+import { TOGGLE_DASHBOARD_MENU, FETCH_USER_PERMISSIONS } from './constants';
 
 const initialState = {
-  isMenuOpen: false
+  isMenuOpen: false,
+  permissions: [],
 };
 
 const dashboardReducer = (state = initialState, action) => {
@@ -16,6 +17,11 @@ const dashboardReducer = (state = initialState, action) => {
       return {
         ...state,
         isMenuOpen: !state.isMenuOpen
+      };
+    case FETCH_USER_PERMISSIONS:
+      return {
+        ...state,
+        permissions: action.payload,
       };
     default:
       return state;

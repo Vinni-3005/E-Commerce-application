@@ -30,7 +30,7 @@ const mapStateToProps = (state) => ( {
 
 const mapDispatchToProps = {
     addRole,
-    fetchRoles,
+    fetchRolesData,
     editRole,
     deleteRole,
 };

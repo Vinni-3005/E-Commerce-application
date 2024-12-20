@@ -12,8 +12,9 @@ import { Collapse, Navbar } from 'reactstrap';
 import Button from '../../Common/Button';
 
 const AccountMenu = props => {
-  const { user, isMenuOpen, links, toggleMenu } = props;
-  console.log('Links passed to AccountMenu:', links);
+  const { user, isMenuOpen, menuItems, toggleMenu } = props;
+  console.log('Menu Items in AccountMenu:', menuItems);
+  //console.log('Links passed to AccountMenu:', links);
 
   const getAllowedProvider = link => {
     if (!link.provider) return true;
@@ -37,14 +38,14 @@ const AccountMenu = props => {
       <Navbar color='light' light expand='md'>
         <Collapse isOpen={isMenuOpen} navbar>
           <ul className='panel-links'>
-            {links.map((link, index) => {
-              const PREFIX = link.prefix ? link.prefix : '';
+            {menuItems.map((link,index) => {
+              //check if the link is allowed for the current users'provider
               const isProviderAllowed = getAllowedProvider(link);
-              if (!isProviderAllowed) return;
+              if (!isProviderAllowed) return null;
               return (
                 <li key={index}>
                   <NavLink
-                    to={PREFIX + link.to}
+                    to={link.to} //link to full path including prefix
                     activeClassName='active-link'
                     exact
                   >
@@ -60,12 +61,8 @@ const AccountMenu = props => {
   );
 };
 
-
-
-
-
 AccountMenu.defaultProps = {
-  links: [],
+  menuItems: [],
 };
 
 

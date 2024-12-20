@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../Users/actions'; // Import fetchUsers action from the users container
-import { fetchRoles } from '../CreateRole/actions';
+import { fetchRolesData } from '../CreateRole/actions';
 import { assignRole } from './actions'; // Import necessary actions for roles and role assignment
 
 const AssignRole = () => {
@@ -20,7 +20,7 @@ const AssignRole = () => {
   // Fetch data on component mount
   useEffect(() => {
     dispatch(fetchUsers()); // Fetch users from the API (using the Users container's action)
-    dispatch(fetchRoles()); // Assuming this fetches roles for the dropdown
+    dispatch(fetchRolesData()); // Assuming this fetches roles for the dropdown
   }, [dispatch]);
 
   const  renderUserOptions = () => {
@@ -37,37 +37,6 @@ const AssignRole = () => {
       );
     });
   };
-  // Generate dropdown options for users
-  /*const renderUserOptions = () => {
-    let options = [];
-    if (users.length > 0) {
-      for (let i = 0; i < users.length; i++) {
-        const userName = users[i].firstName || 'Unnamed user';
-        options.push(
-          <option key={users[i]._id} value={users[i]._id}>
-            {userName}
-          </option>
-        );
-      }
-    } else {
-      options.push(<option key="no-users" disabled>No users available</option>);
-    }
-    return options;
-  };*/
-
-  // Generate dropdown options for roles
-  /*const renderRoleOptions = () => {
-    console.log("Roles Array:", roles);
-    if (!Array.isArray(roles) || roles.length === 0) {
-      return <option key="no-roles" disabled>No roles available</option>;
-    }
-
-    return roles.map((role) => (
-      <option key={role._id} value={role._id}>
-        {role.roleName || 'Unnamed Role'}
-      </option>
-    ));
-  };*/
 
   const renderRoleOptions = () => {
     return roles.length > 0 ? (

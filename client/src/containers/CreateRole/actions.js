@@ -8,17 +8,17 @@ import {
   ADD_ROLE,
   EDIT_ROLE,
   DELETE_ROLE,
-  FETCH_ROLES
+  FETCH_ROLES_DATA
 } from './constants';
 import { API_URL } from '../../constants/constant';
 
 // Action to fetch existing roles
-export const fetchRoles = () => async (dispatch) => {
+export const fetchRolesData = () => async (dispatch) => {
   try {
     const response = await axios.get(`${API_URL}/roles`);
     console.log('Roles fetched:', response.data);
     dispatch({
-      type: FETCH_ROLES,
+      type: FETCH_ROLES_DATA,
       payload: response.data,
     });
   } catch (error) {
@@ -66,7 +66,7 @@ export const deleteRole = (roleId) => async (dispatch) => {
 };
 
 
-export const fetchRolePermissions = (role) => async (dispatch) => {
+/*export const fetchRolePermissions = (role) => async (dispatch) => {
   try {
     const response = await axios.get(`${API_URL}/roles/${role}`);
 
@@ -77,6 +77,6 @@ export const fetchRolePermissions = (role) => async (dispatch) => {
   } catch (error) {
     console.error('Error fetching role permissions:', error);
   }
-};
+};*/
 
 

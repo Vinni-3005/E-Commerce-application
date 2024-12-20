@@ -4,7 +4,7 @@ import {
   ADD_ROLE,
   EDIT_ROLE,
   DELETE_ROLE,
-  FETCH_ROLES
+  FETCH_ROLES_DATA
 } from './constants';
 
 const initialState = {
@@ -13,7 +13,7 @@ const initialState = {
 
 const roleReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_ROLES:
+    case FETCH_ROLES_DATA:
       return {
         ...state,
         roles: action.payload,
