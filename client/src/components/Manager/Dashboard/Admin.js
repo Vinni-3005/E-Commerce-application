@@ -39,16 +39,16 @@ const Admin = props => {
               <Route exact path='/dashboard' component={Account} />
               <Route path='/dashboard/security' component={AccountSecurity} />
               <Route path='/dashboard/address' component={Address} />
-              <Route path='/dashboard/product' component={Product} />
-              <Route path='/dashboard/category' component={Category} />
+              <Route path='/dashboard/products' component={Product} />
+              <Route path='/dashboard/categories' component={Category} />
               <Route path='/dashboard/brand' component={Brand} />
               <Route path='/dashboard/users' component={Users} />
               <Route path='/dashboard/merchant' component={Merchant} />
               <Route path='/dashboard/orders' component={Order} />
               <Route path='/dashboard/review' component={Review} />
               <Route path='/dashboard/wishlist' component={Wishlist} />
-              <Route path='/dashboard/CreateRole' component={CreateRoles}/>
-              <Route path='/dashboard/AssignRole' component={AssignRole}/>
+              <Route path='/dashboard/createroles' component={CreateRoles}/>
+              <Route path='/dashboard/assignroles' component={AssignRole}/>
               <Route path='*' component={Page404} />
             </Switch>
           </div>

@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import actions from '../../actions';
 import { API_URL, ROLES } from '../../constants';
 //import dashboardLinks from './links.json';
-import { isDisabledMerchantAccount } from '../../utils/app';
+import { isDisabledMerchantAccount, isProviderAllowed } from '../../utils/app';
 import Admin from '../../components/Manager/Dashboard/Admin';
 import Merchant from '../../components/Manager/Dashboard/Merchant';
 import Customer from '../../components/Manager/Dashboard/Customer';
@@ -103,7 +103,7 @@ class Dashboard extends React.PureComponent {
     const menuItems = [];
     const permissionMap = {
       address:"Address",
-      security:"Account Security",
+      security:"AccountSecurity",
       products:"Products",
       categories:"Categories",
       brand:"Brand",
@@ -119,10 +119,13 @@ class Dashboard extends React.PureComponent {
 
     permissions.forEach((permission) => {
       if (permissionMap[permission]) {
+        if (permission === "security" && !isProviderAllowed(this.props.user.provider)) {
+          return;
+        }
         menuItems.push({
-          to:`/${permission}`,
+          to:`/dashboard/${permission}`,
           name:permissionMap[permission],
-          prefix:"/dashboard",
+          prefix:'/dashboard',
         });
       }
     });

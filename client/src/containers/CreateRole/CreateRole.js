@@ -32,7 +32,7 @@ const CreateRole = () => {
   //const rolesList = Array.isArray(roles) ? roles : [];
 
   useEffect(() => {
-    dispatch(fetchRoles()); // Fetch roles on initial load
+    dispatch(fetchRolesData()); // Fetch roles on initial load
   }, [dispatch]);
 
   const handleToggleChange = (permission) => {
