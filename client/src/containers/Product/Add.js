@@ -26,7 +26,7 @@ class Add extends React.PureComponent {
       formErrors,
       brands,
       productChange,
-      addProduct
+      addProducts
     } = this.props;
 
     return (

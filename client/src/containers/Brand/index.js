@@ -20,12 +20,14 @@ class Brand extends React.PureComponent {
   render() {
     const { user } = this.props;
 
+    const normalizedRole = user?.role ? user.role.trim().toUpperCase() : null;
+
     return (
       <div className='brand-dashboard'>
         <Switch>
           <Route exact path='/dashboard/brand' component={List} />
           <Route exact path='/dashboard/brand/edit/:id' component={Edit} />
-          {user.role === ROLES.Admin && (
+          {normalizedRole === ROLES.Admin && (
             <Route exact path='/dashboard/brand/add' component={Add} />
           )}
           <Route path='*' component={Page404} />

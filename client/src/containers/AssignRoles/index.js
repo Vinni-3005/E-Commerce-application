@@ -25,13 +25,13 @@ const AssignRole = () => {
 
   const  renderUserOptions = () => {
     if (users.length === 0) {
-      return <option key="no users" disabled>No users available</option>
+      return <option key="no users" disabled>No users available</option>;
     }
 
-    return users.map((user) => {
+    return users.map((user, index) => {
       const fullName= `${user.firstName || 'Unnamed'} ${user.lastName || ''}`.trim();
       return (
-        <option key={user._id} value={user.username || fullName}>
+        <option key={user._id || index} value={user.username || fullName}>
           {fullName}
         </option>
       );
@@ -41,7 +41,7 @@ const AssignRole = () => {
   const renderRoleOptions = () => {
     return roles.length > 0 ? (
       roles.map((role) => (
-        <option key={role.roleName} value={role.roleName}>
+        <option key={role.roleName || index} value={role.roleName}>
           {role.roleName || 'Unnamed Role'}
         </option>
       ))
