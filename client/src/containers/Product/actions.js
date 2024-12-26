@@ -96,7 +96,7 @@ export const filterProducts = (n, v) => {
 
       dispatch({ type: SET_ADVANCED_FILTERS, payload });
       const sortOrder = getSortOrder(payload.order);
-      const response = await axios.get(`${API_URL}/product/list`, {
+      const response = await axios.get(`${API_URL}/products/list`, {
         params: { ...payload, sortOrder }
       });
       const { products, totalPages, currentPage, count } = response.data;
@@ -158,7 +158,7 @@ export const fetchProductsSelect = () => {
   return async (dispatch, getState) => {
     try {
       //const token = localStorage.getItem('token')
-      const response = await axios.get(`${API_URL}/product/select`);
+      const response = await axios.get(`${API_URL}/products/select`);
       headers: {
         Authorization: `Bearer ${'token'}` // Include the token in the header
       }
@@ -200,7 +200,7 @@ export const fetchProduct = id => {
   return async (dispatch, getState) => {
     try {
       
-      const response = await axios.get(`${API_URL}/product/${id}`);
+      const response = await axios.get(`${API_URL}/products/${id}`);
       
 
       const inventory = response.data.product.quantity;

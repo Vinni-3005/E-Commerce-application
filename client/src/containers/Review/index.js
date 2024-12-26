@@ -16,7 +16,7 @@ import LoadingIndicator from '../../components/Common/LoadingIndicator';
 import NotFound from '../../components/Common/NotFound';
 import Pagination from '../../components/Common/Pagination';
 
-class Review extends React.PureComponent {
+class Reviews extends React.PureComponent {
   componentDidMount() {
     this.props.fetchReviews();
   }
@@ -75,4 +75,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, actions)(Review);
+export default connect(mapStateToProps, actions)(Reviews);

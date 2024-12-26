@@ -41,7 +41,7 @@ class Add extends React.PureComponent {
           formErrors={formErrors}
           brands={brands}
           productChange={productChange}
-          addProduct={addProduct}
+          addProduct={addProducts}
         />
       </SubPage>
     );
