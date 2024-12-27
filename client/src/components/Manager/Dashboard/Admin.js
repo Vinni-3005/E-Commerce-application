@@ -20,7 +20,8 @@ import Users from '../../../containers/Users';
 import Category from '../../../containers/Category';
 import Product from '../../../containers/Product';
 import Brand from '../../../containers/Brand';
-import Merchant from '../../../containers/Merchant';
+//import Merchant from '../../../containers/Merchant';
+import Distributor from '../../../containers/Merchant';
 import Review from '../../../containers/Review';
 import Wishlist from '../../../containers/WishList';
 import CreateRoles from '../../../containers/CreateRole/CreateRole';
@@ -37,13 +38,13 @@ const Admin = props => {
           <div className='panel-body'>
             <Switch>
               <Route exact path='/dashboard' component={Account} />
-              <Route path='/dashboard/security' component={AccountSecurity} />
+              <Route path='/dashboard/AccountSecurity' component={AccountSecurity} />
               <Route path='/dashboard/address' component={Address} />
               <Route path='/dashboard/products' component={Product} />
-              <Route path='/dashboard/categories' component={Category} />
+              <Route path='/dashboard/category' component={Category} />
               <Route path='/dashboard/brand' component={Brand} />
               <Route path='/dashboard/users' component={Users} />
-              <Route path='/dashboard/merchant' component={Merchant} />
+              <Route path='/dashboard/distributor' component={Distributor} />
               <Route path='/dashboard/orders' component={Order} />
               <Route path='/dashboard/reviews' component={Review} />
               <Route path='/dashboard/wishlist' component={Wishlist} />

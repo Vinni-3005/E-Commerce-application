@@ -23,7 +23,7 @@ class Category extends React.PureComponent {
     return (
       <div className='category-dashboard'>
         <Switch>
-          <Route exact path='/dashboard/categories' component={List} />
+          <Route exact path='/dashboard/category' component={List} />
           <Route exact path='/dashboard/category/edit/:id' component={Edit} />
           {/* {user.role === ROLES.Admin && ( */}
           <Route exact path='/dashboard/category/add' component={Add} />

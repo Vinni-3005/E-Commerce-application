@@ -13,12 +13,13 @@ import { API_URL, ROLES } from '../../constants';
 //import dashboardLinks from './links.json';
 import { isDisabledMerchantAccount, isProviderAllowed } from '../../utils/app';
 import Admin from '../../components/Manager/Dashboard/Admin';
-import Merchant from '../../components/Manager/Dashboard/Merchant';
+import Distributor from '../../components/Manager/Dashboard/Merchant';
 import Customer from '../../components/Manager/Dashboard/Customer';
 import DisabledMerchantAccount from '../../components/Manager/DisabledAccount/Merchant';
 import LoadingIndicator from '../../components/Common/LoadingIndicator';
 import AccountMenu from '../../components/Manager/AccountMenu';
 import { fetchRolesData } from '../CreateRole/actions';
+import AccountSecurity from '../AccountSecurity';
 //import { API_URL } from '../../constants';
 
 class Dashboard extends React.PureComponent {
@@ -103,12 +104,12 @@ class Dashboard extends React.PureComponent {
     const menuItems = [];
     const permissionMap = {
       address:"Address",
-      security:"AccountSecurity",
+      AccountSecurity:"AccountSecurity",
       products:"Products",
-      categories:"Categories",
+      category:"Category",
       brand:"Brand",
       users:"Users",
-      merchant:"Merchants",
+      distributor:"Distributor",
       orders:"Orders",
       reviews:"Reviews",
       wishlist:"Wishlist",
@@ -119,9 +120,6 @@ class Dashboard extends React.PureComponent {
 
     permissions.forEach((permission) => {
       if (permissionMap[permission]) {
-        if (permission === "security" && !isProviderAllowed(this.props.user.provider)) {
-          return;
-        }
         menuItems.push({
           to:`/dashboard/${permission}`,
           name:permissionMap[permission],

@@ -16,11 +16,13 @@ import Account from '../../../containers/Account';
 import AccountSecurity from '../../../containers/AccountSecurity';
 import Address from '../../../containers/Address';
 import Product from '../../../containers/Product';
+import Category from '../../../containers/Category';
 import Brand from '../../../containers/Brand';
 import Order from '../../../containers/Order';
+import Reviews from '../../../containers/Review';
 import Wishlist from '../../../containers/WishList';
 
-const Merchant = props => {
+const Distributor = props => {
   return (
     <div className='merchant'>
       <Row>
@@ -31,11 +33,13 @@ const Merchant = props => {
           <div className='panel-body'>
             <Switch>
               <Route exact path='/dashboard' component={Account} />
-              <Route path='/dashboard/security' component={AccountSecurity} />
+              <Route path='/dashboard/AccountSecurity' component={AccountSecurity} />
               <Route path='/dashboard/address' component={Address} />
-              <Route path='/dashboard/product' component={Product} />
+              <Route path='/dashboard/products' component={Product} />
+              <Route path='/dashboard/category' component={Category}/>
               <Route path='/dashboard/brand' component={Brand} />
               <Route path='/dashboard/orders' component={Order} />
+              <Route path='/dashboard/reviews' component={Reviews}/>
               <Route path='/dashboard/wishlist' component={Wishlist} />
               <Route path='*' component={Page404} />
             </Switch>
@@ -46,4 +50,4 @@ const Merchant = props => {
   );
 };
 
-export default Merchant;
+export default Distributor;

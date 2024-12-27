@@ -7,7 +7,7 @@
 import React from 'react';
 
 import { Row, Col } from 'reactstrap';
-import ROLES from '../../../constants/index';
+//import ROLES from '../../../constants/index';
 import Input from '../../Common/Input';
 import Switch from '../../Common/Switch';
 import Button from '../../Common/Button';

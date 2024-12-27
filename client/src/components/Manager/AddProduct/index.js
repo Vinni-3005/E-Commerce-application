@@ -128,7 +128,6 @@ const AddProduct = props => {
                 label={'Select Brand'}
                 value={
                   user.role === ROLES.Merchant ? brands[1] : productFormData.brand
-                  /*productFormData.brand*/
                 }
                 options={brands}
                 handleSelectChange={value => {

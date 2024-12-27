@@ -296,7 +296,7 @@ export const addProduct = () => {
         }
       }
 
-      const response = await axios.post(`${API_URL}/product/add`, formData, {
+      const response = await axios.post(`${API_URL}/products/add`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 

@@ -33,7 +33,7 @@ const Customer = props => {
             <Switch>
               <Route exact path='/dashboard' component={Account} />
               {!isProviderAllowed(user.provider) && (
-                <Route path='/dashboard/security' component={AccountSecurity} />
+                <Route path='/dashboard/AccountSecurity' component={AccountSecurity} />
               )}
               <Route path='/dashboard/address' component={Address} />
               <Route path='/dashboard/orders' component={Order} />

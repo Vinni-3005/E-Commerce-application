@@ -10,13 +10,13 @@ import {useHistory} from 'react-router-dom';
 const CreateRole = () => {
   const [roleName, setRoleName] = useState('');
   const [permissions, setPermissions] = useState({
-    accountsecurity:false,
+    AccountSecurity:false,
     address:false,
     products: false,
-    categories: false,
+    category: false,
     brand: false,
     users: false,
-    merchant: false,
+    distributor: false,
     orders: false,
     reviews: false,
     wishlist: false,
@@ -64,13 +64,13 @@ const CreateRole = () => {
     // Clear form fields after submit
     setRoleName('');
     setPermissions({
-      accountsecurity:false,
+      AccountSecurity:false,
       address:false,
       products: false,
-      categories: false,
+      category: false,
       brand: false,
       users: false,
-      merchant: false,
+      distributor: false,
       orders: false,
       reviews: false,
       wishlist: false,

@@ -26,7 +26,7 @@ class Add extends React.PureComponent {
       formErrors,
       brands,
       productChange,
-      addProducts
+      addProduct
     } = this.props;
 
     return (
@@ -41,7 +41,7 @@ class Add extends React.PureComponent {
           formErrors={formErrors}
           brands={brands}
           productChange={productChange}
-          addProduct={addProducts}
+          addProduct={addProduct}
         />
       </SubPage>
     );
