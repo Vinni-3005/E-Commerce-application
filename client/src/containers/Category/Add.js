@@ -12,6 +12,7 @@ import actions from '../../actions';
 
 import AddCategory from '../../components/Manager/AddCategory';
 import SubPage from '../../components/Manager/SubPage';
+import Popover from '../../components/Common/Popover';
 
 class Add extends React.PureComponent {
   componentDidMount() {

@@ -24,9 +24,23 @@ class Category extends React.PureComponent {
       <div className='category-dashboard'>
         <Switch>
           <Route exact path='/dashboard/category' component={List} />
-          <Route exact path='/dashboard/category/edit/:id' component={Edit} />
+          <Route exact path='/dashboard/category/edit/:id' 
+           render = { (props) =>
+            user.role === ROLES.Distributor ? (
+              <div>You don't have permission to edit categories</div>
+            ) : (
+              <Edit {...props}/>
+            )
+           } />
           {/* {user.role === ROLES.Admin && ( */}
-          <Route exact path='/dashboard/category/add' component={Add} />
+          <Route exact path='/dashboard/category/add' 
+           render = {() => 
+            user.role === ROLES.Distributor ? (
+              <div>You dont have permission to add categories</div>
+            ) : (
+              <Add/>
+            )
+           } />
           {/* )} */}
           <Route path='*' component={Page404} />
         </Switch>
