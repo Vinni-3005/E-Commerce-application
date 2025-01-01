@@ -9,7 +9,7 @@ import React from 'react';
 import Button from '../../Common/Button';
 
 const SubPage = props => {
-  const { title, actionTitle, handleAddAction, children } = props;
+  const { title, actionTitle, handleAction, children } = props;
 
   return (
     <div className='sub-page'>
@@ -21,7 +21,7 @@ const SubPage = props => {
               variant='none'
               size='sm'
               text={actionTitle}
-              onClick={handleAddAction}
+              onClick={handleAction}
             />
           </div>
         )}

@@ -31,21 +31,30 @@ class List extends React.PureComponent {
   }
 
 
-  handleAddAction = (event) => {
-    const {user} = this.props;
-    if (user.role === ROLES.Distributor) {
-      this.setState({
-        showPopover:true,
-        popoverMessage:'You do not have permission to add categories',
-        target:event.target,
-      });
-      
+  handleAction = (event) => {
+    console.log("handleAction invoked");
+    const { normalizedRole } = this.props;
+  
+    console.log("Normalized Role:", normalizedRole);
+  
+    if (normalizedRole === "Distributor") {
+      console.log("Distributor: blocking navigation to add category");
+  
       event.preventDefault();
+      event.stopPropagation();
+  
+      this.setState({
+        showPopover: true,
+        popoverMessage: 'You do not have permission to add categories',
+        target: event.target,
+      });
+  
       return;
+    } else {
+      console.log("Distributor: Navigating to Add Category Page");
+      this.props.history.push('/dashboard/category/add');
     }
-    this.props.history.push('/dashboard/category/add');
-  };
-
+  }
   closePopover = () => {
     this.setState({showPopover:false});
   };
@@ -56,18 +65,10 @@ class List extends React.PureComponent {
 
     return (
       <>
-        {showPopover && (
-          <Popover
-            target={target}
-            popoverTitle="Permission Denied"
-          >
-            {popoverMessage}
-          </Popover>
-        )}
         <SubPage
           title='Categories'
           actionTitle='Add'
-          handleAction={ (event) =>this.handleAddAction(event)}
+          handleAction={this.handleAction}
         >
           {isLoading ? (
             <LoadingIndicator inline />
@@ -76,6 +77,16 @@ class List extends React.PureComponent {
           ) : (
             <NotFound message='No categories found.' />
           )}
+
+          {showPopover &&  (
+            <Popover
+              target={target}
+              popoverTitle="Permission Denied"
+              onClose={this.closePopover}
+            >
+              {popoverMessage}
+            </Popover>
+        )}    
         </SubPage>
       </>
     );
@@ -86,7 +97,8 @@ const mapStateToProps = state => {
   return {
     categories: state.category.categories,
     isLoading: state.category.isLoading,
-    user: state.account.user
+    user:state.account.user,
+    normalizedRole:state.account.user.role,
   };
 };
 

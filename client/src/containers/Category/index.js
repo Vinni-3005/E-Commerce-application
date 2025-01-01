@@ -18,7 +18,7 @@ import Page404 from '../../components/Common/Page404';
 
 class Category extends React.PureComponent {
   render() {
-    const { user } = this.props;
+    const { normalizedRole } = this.props;
 
     return (
       <div className='category-dashboard'>
@@ -26,22 +26,21 @@ class Category extends React.PureComponent {
           <Route exact path='/dashboard/category' component={List} />
           <Route exact path='/dashboard/category/edit/:id' 
            render = { (props) =>
-            user.role === ROLES.Distributor ? (
+            normalizedRole === ROLES.Distributor ? (
               <div>You don't have permission to edit categories</div>
             ) : (
               <Edit {...props}/>
             )
            } />
-          {/* {user.role === ROLES.Admin && ( */}
+          
           <Route exact path='/dashboard/category/add' 
-           render = {() => 
-            user.role === ROLES.Distributor ? (
+           render = {(props) => 
+            normalizedRole === ROLES.Distributor ? (
               <div>You dont have permission to add categories</div>
             ) : (
-              <Add/>
+              <Add {...props}/>
             )
            } />
-          {/* )} */}
           <Route path='*' component={Page404} />
         </Switch>
       </div>
